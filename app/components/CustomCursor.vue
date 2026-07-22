@@ -69,6 +69,12 @@ onMounted(() => {
     return
   }
 
+  // Don't run if user prefers reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    isTouch.value = true
+    return
+  }
+
   // Hide until first real mouse move (avoid 0,0 flash)
   if (dot.value)  { dot.value.style.opacity  = '0' }
   if (ring.value) { ring.value.style.opacity = '0' }

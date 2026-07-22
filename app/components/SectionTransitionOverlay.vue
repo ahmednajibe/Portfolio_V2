@@ -77,7 +77,7 @@ watch(overlayVisible, async (visible) => {
 
     // Reset underline
     const pathLen = pathEl.value?.getTotalLength() ?? 400
-    if (pathEl.value) gsap.set(pathEl.value, { strokeDasharray: pathLen, strokeDashoffset: pathLen })
+    if (pathEl.value) gsap.set(pathEl.value, { strokeDasharray: pathLen, strokeDashoffset: pathLen, opacity: 1 })
 
     const tl = gsap.timeline()
 
@@ -102,18 +102,33 @@ watch(overlayVisible, async (visible) => {
     if (pathEl.value) {
       tl.to(pathEl.value, {
         strokeDashoffset: 0,
-        duration        : 0.45,
+        duration        : 0.6,
         ease            : 'power2.inOut',
       }, lastCharTime - 0.1)
     }
 
   } else {
-    gsap.to(overlayEl.value, {
+    // Exit: characters fade and slide up with stagger, then overlay fades
+    const exitTl = gsap.timeline()
+    charRefs.forEach((el, i) => {
+      if (!el) return
+      exitTl.to(el, {
+        opacity   : 0,
+        y         : -15,
+        duration  : 0.18,
+        ease      : 'power2.in',
+        delay     : i * 0.02,
+      }, 0)
+    })
+    if (pathEl.value) {
+      exitTl.to(pathEl.value, { opacity: 0, duration: 0.18 }, 0)
+    }
+    exitTl.to(overlayEl.value, {
       autoAlpha   : 0,
       pointerEvents: 'none',
-      duration    : 0.28,
+      duration    : 0.25,
       ease        : 'power2.in',
-    })
+    }, '+=0.08')
   }
 })
 </script>
@@ -127,8 +142,8 @@ watch(overlayVisible, async (visible) => {
   align-items: center;
   justify-content: center;
   background: transparent;
-  backdrop-filter: blur(40px) brightness(0.5);
-  -webkit-backdrop-filter: blur(40px) brightness(0.5);
+  backdrop-filter: blur(20px) brightness(0.6);
+  -webkit-backdrop-filter: blur(20px) brightness(0.6);
   visibility: hidden;
   opacity: 0;
 }

@@ -36,12 +36,15 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Lenis from 'lenis'
 import { currentPage, isTransitioning, PAGE_IDS, goToPage } from '~/composables/usePageNav'
 
 const currentIndex = computed(() => PAGE_IDS.indexOf(currentPage.value))
 
 const showBackToTop = ref(false)
 let activeScrollEl: HTMLElement | null = null
+let lenis: Lenis | null = null
+let lenisRaf = 0
 
 function onPanelScroll() {
   showBackToTop.value = !!activeScrollEl && activeScrollEl.scrollTop > 400
@@ -51,16 +54,37 @@ function scrollPanelToTop() {
   if (activeScrollEl) activeScrollEl.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
-// Attach scroll listener to active panel whenever page changes
+// Attach scroll listener and Lenis to active panel whenever page changes
 watch(currentPage, (page) => {
   if (activeScrollEl) {
     activeScrollEl.removeEventListener('scroll', onPanelScroll)
     activeScrollEl = null
   }
+  // Destroy previous Lenis instance
+  if (lenis) { lenis.destroy(); lenis = null }
+  if (lenisRaf) { cancelAnimationFrame(lenisRaf); lenisRaf = 0 }
+
   showBackToTop.value = false
   nextTick(() => {
     activeScrollEl = document.querySelector(`[data-panel="${page}"]`) as HTMLElement | null
-    if (activeScrollEl) activeScrollEl.addEventListener('scroll', onPanelScroll, { passive: true })
+    if (activeScrollEl) {
+      activeScrollEl.addEventListener('scroll', onPanelScroll, { passive: true })
+      // Init Lenis for smooth scroll on this panel (skip if reduced motion)
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        lenis = new Lenis({
+          wrapper: activeScrollEl,
+          content: activeScrollEl.firstElementChild as HTMLElement,
+          duration: 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+        })
+        const raf = (time: number) => {
+          lenis?.raf(time)
+          lenisRaf = requestAnimationFrame(raf)
+        }
+        lenisRaf = requestAnimationFrame(raf)
+      }
+    }
   })
 }, { immediate: true })
 
@@ -149,6 +173,8 @@ function setupWheelNav() {
     window.removeEventListener('touchstart', onTouchStart)
     window.removeEventListener('touchend',   onTouchEnd)
     if (activeScrollEl) activeScrollEl.removeEventListener('scroll', onPanelScroll)
+    if (lenis) { lenis.destroy(); lenis = null }
+    if (lenisRaf) { cancelAnimationFrame(lenisRaf); lenisRaf = 0 }
   }
 }
 

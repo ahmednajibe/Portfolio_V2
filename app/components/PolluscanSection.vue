@@ -94,6 +94,7 @@
 
 <script setup lang="ts">
 import { useAnimation } from '~/composables/useAnimation'
+import { currentPage } from '~/composables/usePageNav'
 const { revealBlur, revealScale, revealFadeUp, STAGGER, Y, DUR } = useAnimation()
 
 const videoOpen = ref(false)
@@ -143,6 +144,7 @@ function generateWaveLine(offset: number, amplitude = 20, frequency = 0.03): str
 
 let animFrame: number
 let t = 0
+let metricsInterval: ReturnType<typeof setInterval> | null = null
 
 function animate() {
   t += 0.015
@@ -157,7 +159,7 @@ onMounted(() => {
   revealScale(monitorEl.value, { delay: 0.08, duration: DUR.xl })
   revealFadeUp(sidebarEl.value, { delay: 0.15, y: Y.sm })
   animate()
-  setInterval(() => {
+  metricsInterval = setInterval(() => {
     const now = new Date()
     currentTime.value = now.toLocaleTimeString('en-US', { hour12: false })
 
@@ -169,7 +171,29 @@ onMounted(() => {
   }, 2000)
 })
 
+// Pause/resume animations based on active panel
+watch(currentPage, (page) => {
+  if (page === 'polluscan') {
+    if (!animFrame) animate()
+    if (!metricsInterval) {
+      metricsInterval = setInterval(() => {
+        const now = new Date()
+        currentTime.value = now.toLocaleTimeString('en-US', { hour12: false })
+        metricsRaw.value = metricsRaw.value.map(m => {
+          const delta = Math.floor((Math.random() - 0.48) * 3)
+          const newNum = Math.min(m.max, Math.max(m.min, m.num + delta))
+          return { ...m, num: newNum }
+        })
+      }, 2000)
+    }
+  } else {
+    if (animFrame) { cancelAnimationFrame(animFrame); animFrame = 0 }
+    if (metricsInterval) { clearInterval(metricsInterval); metricsInterval = null }
+  }
+})
+
 onUnmounted(() => {
   cancelAnimationFrame(animFrame)
+  if (metricsInterval) clearInterval(metricsInterval)
 })
 </script>

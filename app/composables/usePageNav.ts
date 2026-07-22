@@ -74,5 +74,5 @@ export function goToPage(id: string) {
   )
 
   // Hide overlay after panels have fully switched
-  tl.call(() => { overlayVisible.value = false }, [], 'swap+=0.45')
+  tl.call(() => { overlayVisible.value = false }, [], 'swap+=0.7')
 }

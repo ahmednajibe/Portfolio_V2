@@ -48,8 +48,8 @@
 
           <!-- CTA -->
           <div ref="cta" class="flex flex-wrap items-center gap-4">
-            <a href="#projects" class="btn-primary" @click.prevent="goToPage('projects')">Selected Work →</a>
-            <a href="#contact" class="btn-ghost" @click.prevent="goToPage('contact')">Get In Touch</a>
+            <a ref="ctaPrimary" href="#projects" class="btn-primary" @click.prevent="goToPage('projects')">Selected Work →</a>
+            <a ref="ctaGhost" href="#contact" class="btn-ghost" @click.prevent="goToPage('contact')">Get In Touch</a>
           </div>
 
           <!-- Socials -->
@@ -121,6 +121,7 @@
 import { gsap } from 'gsap'
 import { heroSetInitialStates, heroAnimateIn } from '~/composables/useAnimation'
 import { goToPage } from '~/composables/usePageNav'
+import { useMagnetic } from '~/composables/useMagnetic'
 
 const heroSection = ref<HTMLElement | null>(null)
 const glowEl      = ref<HTMLElement | null>(null)
@@ -131,8 +132,13 @@ const word2       = ref<HTMLElement | null>(null)
 const word3       = ref<HTMLElement | null>(null)
 const desc        = ref<HTMLElement | null>(null)
 const cta         = ref<HTMLElement | null>(null)
+const ctaPrimary  = ref<HTMLElement | null>(null)
+const ctaGhost    = ref<HTMLElement | null>(null)
 const socials     = ref<HTMLElement | null>(null)
 const photoEl     = ref<HTMLElement | null>(null)
+
+useMagnetic(ctaPrimary, 0.35)
+useMagnetic(ctaGhost, 0.25)
 
 let cleanupParallax: (() => void) | null = null
 

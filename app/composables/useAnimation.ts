@@ -8,6 +8,13 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 // ─────────────────────────────────────────────
+// REDUCED MOTION
+// ─────────────────────────────────────────────
+
+const prefersReducedMotion = typeof window !== 'undefined'
+  && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+// ─────────────────────────────────────────────
 // TOKENS
 // ─────────────────────────────────────────────
 
@@ -64,7 +71,8 @@ function onEnterViewport(el: Element, callback: () => void) {
   const io = new IntersectionObserver(
     (entries) => {
       if (entries[0]?.isIntersecting) {
-        callback()
+        // Delay so animations start after panel transition completes
+        setTimeout(callback, 400)
         io.disconnect()
       }
     },
@@ -95,6 +103,7 @@ type StaggerOpts = RevealOpts & {
  */
 export function revealFadeUp(el: HTMLElement | null, opts: RevealOpts = {}) {
   if (!el) return
+  if (prefersReducedMotion) { gsap.set(el, { opacity: 1, y: 0 }); return }
   const y = opts.y ?? Y.md
   gsap.set(el, { opacity: 0, y })
   onEnterViewport(el, () => gsap.to(el, {
@@ -115,6 +124,7 @@ export function revealStagger(
 ) {
   if (!els || !els.length) return
   const arr = Array.from(els)
+  if (prefersReducedMotion) { gsap.set(arr, { opacity: 1, y: 0, x: 0 }); return }
   const y   = opts.y ?? Y.md
   const x   = opts.x ?? 0
   gsap.set(arr, { opacity: 0, y, x })
@@ -134,6 +144,7 @@ export function revealStagger(
  */
 export function revealFromLeft(el: HTMLElement | null, opts: RevealOpts = {}) {
   if (!el) return
+  if (prefersReducedMotion) { gsap.set(el, { opacity: 1, x: 0 }); return }
   gsap.set(el, { opacity: 0, x: -50 })
   onEnterViewport(el, () => gsap.to(el, { opacity: 1, x: 0, duration: opts.duration ?? DUR.lg, delay: opts.delay ?? 0, ease: opts.ease ?? EASE.enter }))
 }
@@ -143,6 +154,7 @@ export function revealFromLeft(el: HTMLElement | null, opts: RevealOpts = {}) {
  */
 export function revealFromRight(el: HTMLElement | null, opts: RevealOpts = {}) {
   if (!el) return
+  if (prefersReducedMotion) { gsap.set(el, { opacity: 1, x: 0 }); return }
   gsap.set(el, { opacity: 0, x: 50 })
   onEnterViewport(el, () => gsap.to(el, { opacity: 1, x: 0, duration: opts.duration ?? DUR.lg, delay: opts.delay ?? 0, ease: opts.ease ?? EASE.enter }))
 }
@@ -152,6 +164,7 @@ export function revealFromRight(el: HTMLElement | null, opts: RevealOpts = {}) {
  */
 export function revealBlur(el: HTMLElement | null, opts: RevealOpts = {}) {
   if (!el) return
+  if (prefersReducedMotion) { gsap.set(el, { opacity: 1, filter: 'blur(0px)', y: 0 }); return }
   const y = opts.y ?? Y.sm
   gsap.set(el, { opacity: 0, filter: 'blur(10px)', y })
   onEnterViewport(el, () => gsap.to(el, {
@@ -169,6 +182,7 @@ export function revealBlur(el: HTMLElement | null, opts: RevealOpts = {}) {
  */
 export function revealScale(el: HTMLElement | null, opts: RevealOpts & { scale?: number } = {}) {
   if (!el) return
+  if (prefersReducedMotion) { gsap.set(el, { opacity: 1, scale: 1 }); return }
   const fromScale = opts.scale ?? 0.94
   gsap.set(el, { opacity: 0, scale: fromScale })
   onEnterViewport(el, () => gsap.to(el, {
@@ -224,6 +238,10 @@ type HeroElements = {
 
 export function heroSetInitialStates(els: HeroElements) {
   const { tagline, word1, word2, word3, desc, cta, socials, photo } = els
+  if (prefersReducedMotion) {
+    gsap.set([tagline, word1, word2, word3, desc, cta, socials, photo], { opacity: 1, y: 0, x: 0, scale: 1, filter: 'blur(0px)' })
+    return
+  }
   gsap.set(tagline, { opacity: 0, y: Y.sm })
   gsap.set(word1,   { opacity: 0, y: Y.lg })
   gsap.set(word2,   { opacity: 0, filter: 'blur(14px)', y: Y.md })
@@ -236,6 +254,7 @@ export function heroSetInitialStates(els: HeroElements) {
 
 export function heroAnimateIn(els: HeroElements) {
   const { tagline, word1, word2, word3, desc, cta, socials, photo } = els
+  if (prefersReducedMotion) return gsap.timeline()
   const tl = gsap.timeline({ defaults: { ease: EASE.enter } })
 
   tl.to(tagline, { opacity: 1, y: 0, duration: DUR.sm })

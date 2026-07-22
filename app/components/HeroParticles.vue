@@ -3,6 +3,8 @@
 </template>
 
 <script setup lang="ts">
+import { currentPage } from '~/composables/usePageNav'
+
 const canvas = ref<HTMLCanvasElement | null>(null)
 
 let raf       = 0
@@ -106,6 +108,7 @@ function onMouseLeave() {
 }
 
 onMounted(() => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
   resize()
   draw()
 
@@ -113,6 +116,16 @@ onMounted(() => {
   section?.addEventListener('mousemove', onMouseMove, { passive: true })
   section?.addEventListener('mouseleave', onMouseLeave)
   window.addEventListener('resize', resize, { passive: true })
+})
+
+// Pause/resume particles based on active panel
+watch(currentPage, (page) => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  if (page === 'hero') {
+    if (!raf) draw()
+  } else {
+    if (raf) { cancelAnimationFrame(raf); raf = 0 }
+  }
 })
 
 onUnmounted(() => {

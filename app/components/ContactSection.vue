@@ -27,7 +27,7 @@
       </div>
 
       <div ref="ctaEl" class="text-center">
-        <a href="mailto:ahmed.m.najibe@gmail.com" class="btn-primary inline-flex text-base px-8 py-4">
+        <a ref="ctaBtn" href="mailto:ahmed.m.najibe@gmail.com" class="btn-primary inline-flex text-base px-8 py-4">
           Send a Message
           <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -41,11 +41,15 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useAnimation } from '~/composables/useAnimation'
+import { useMagnetic } from '~/composables/useMagnetic'
 
 const { revealBlur, revealStagger, revealFadeUp, STAGGER, Y, DUR } = useAnimation()
 const headerEl = ref<HTMLElement | null>(null)
 const itemsEl  = ref<HTMLElement | null>(null)
 const ctaEl    = ref<HTMLElement | null>(null)
+const ctaBtn   = ref<HTMLElement | null>(null)
+
+useMagnetic(ctaBtn, 0.3)
 
 onMounted(() => {
   revealBlur(headerEl.value)
