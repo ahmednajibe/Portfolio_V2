@@ -86,7 +86,7 @@ const IconInstagram = () => h('svg', { viewBox: '0 0 24 24', fill: 'none', strok
 
 const socials = [
   { label: 'GitHub',    href: 'https://github.com/ahmednajibe',                      icon: IconGithub },
-  { label: 'LinkedIn',  href: 'https://linkedin.com/in/ahmed-najiebe',               icon: IconLinkedin },
+  { label: 'LinkedIn',  href: 'https://linkedin.com/in/ahmed-m-najibe',               icon: IconLinkedin },
   { label: 'Instagram', href: 'https://instagram.com/ahmed_dhshan_',                 icon: IconInstagram },
 ]
 

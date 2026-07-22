@@ -51,9 +51,9 @@ const body     = ref<HTMLElement | null>(null)
 const traitsEl = ref<HTMLElement | null>(null)
 
 const stats = [
-  { value: '1.5+', label: 'Years in production', color: 'text-accent-blue' },
+  { value: '2+', label: 'Years in production', color: 'text-accent-blue' },
   { value: '50+',  label: 'Students taught',      color: 'text-accent-green' },
-  { value: '5',    label: 'Major projects shipped', color: '' },
+  { value: '10+',    label: 'Major projects shipped', color: '' },
   { value: '5.0 ★', label: 'Freelance rating',    color: 'text-accent-blue' },
 ]
 

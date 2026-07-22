@@ -5,7 +5,7 @@ export const isTransitioning = ref(false)
 export const overlayText    = ref('')
 export const overlayVisible = ref(false)
 
-export const PAGE_IDS = ['hero', 'about', 'stack', 'projects', 'polluscan', 'experience', 'contact']
+export const PAGE_IDS = ['hero', 'about', 'projects', 'polluscan', 'stack', 'experience', 'contact']
 
 const SECTION_NAMES: Record<string, string> = {
   hero:       'Home',

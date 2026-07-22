@@ -1,6 +1,7 @@
 <template>
   <div>
     <TheNav />
+    <div class="grain-overlay" />
     <slot />
     <SectionTransitionOverlay />
   </div>

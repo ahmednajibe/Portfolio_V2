@@ -43,7 +43,7 @@ const numberEls = ref<HTMLElement[]>([])
 const stats = [
   { value: 10, suffix: '+',   label: 'Projects Shipped',  sub: 'Web · IoT · AI'         },
   { value: 5,  suffix: '.0★', label: 'Client Rating',     sub: 'Mostaql Freelance'       },
-  { value: 2,  suffix: 'yrs', label: 'Building Systems',  sub: 'Full-Stack & IoT'        },
+  { value: 2,  suffix: '+ yrs', label: 'Building Systems',  sub: 'Full-Stack & IoT'        },
   { value: 4,  suffix: '',    label: 'Industries Served',  sub: 'Gov · Commerce · Health · Env' },
 ]
 
