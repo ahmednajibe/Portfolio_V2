@@ -63,10 +63,18 @@ const loaderDone = ref(false)
 function onLoaderDone() {
   loaderDone.value = true
   nextTick(() => {
-    // Hide all panels except hero
+    // Determine which panel to show from URL hash
+    const hash = window.location.hash.slice(1)
+    const target = ['hero', 'about', 'projects', 'polluscan', 'stack', 'experience', 'contact'].includes(hash)
+      ? hash
+      : 'hero'
+
+    currentPage.value = target
+
+    // Hide all panels except the target
     document.querySelectorAll('[data-panel]').forEach(el => {
       const panel = el as HTMLElement
-      if (panel.dataset.panel !== 'hero') panel.style.display = 'none'
+      if (panel.dataset.panel !== target) panel.style.display = 'none'
     })
   })
 }

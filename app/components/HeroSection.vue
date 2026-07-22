@@ -48,8 +48,8 @@
 
           <!-- CTA -->
           <div ref="cta" class="flex flex-wrap items-center gap-4">
-            <a href="#projects" class="btn-primary">Selected Work →</a>
-            <a href="#contact" class="btn-ghost">Get In Touch</a>
+            <a href="#projects" class="btn-primary" @click.prevent="goToPage('projects')">Selected Work →</a>
+            <a href="#contact" class="btn-ghost" @click.prevent="goToPage('contact')">Get In Touch</a>
           </div>
 
           <!-- Socials -->
@@ -120,6 +120,7 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
 import { heroSetInitialStates, heroAnimateIn } from '~/composables/useAnimation'
+import { goToPage } from '~/composables/usePageNav'
 
 const heroSection = ref<HTMLElement | null>(null)
 const glowEl      = ref<HTMLElement | null>(null)

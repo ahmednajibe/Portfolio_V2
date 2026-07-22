@@ -7,6 +7,16 @@ export const overlayVisible = ref(false)
 
 export const PAGE_IDS = ['hero', 'about', 'projects', 'polluscan', 'stack', 'experience', 'contact']
 
+// Sync currentPage with URL hash for deep linking
+if (import.meta.client) {
+  window.addEventListener('popstate', (e) => {
+    const page = (e.state?.page as string) || window.location.hash.slice(1) || 'hero'
+    if (PAGE_IDS.includes(page) && page !== currentPage.value) {
+      goToPage(page)
+    }
+  })
+}
+
 const SECTION_NAMES: Record<string, string> = {
   hero:       'Home',
   about:      'About',
@@ -51,6 +61,9 @@ export function goToPage(id: string) {
   tl.call(() => {
     currentPage.value  = id
     next!.style.display = 'block'
+    if (import.meta.client) {
+      window.history.pushState({ page: id }, '', `#${id}`)
+    }
   }, [], 'swap+=0.2')
 
   tl.fromTo(
