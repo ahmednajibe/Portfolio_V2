@@ -51,12 +51,15 @@
           >
             <!-- Image -->
             <div class="pcard-img" :style="{ background: project.imageBg }">
-              <img
+              <NuxtImg
                 v-if="project.image"
                 :src="project.image"
                 :alt="project.title"
                 class="w-full h-full object-cover object-top opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
+                format="webp"
+                quality="80"
                 loading="lazy"
+                decoding="async"
               />
               <div v-else class="w-full h-full flex items-center justify-center">
                 <span class="text-6xl opacity-8">{{ project.icon }}</span>
@@ -204,7 +207,7 @@ const projects = [
     title: 'FatoorahBot',
     subtitle: 'AI-Powered Invoice Management Bot',
     icon: '🤖',
-    image: '/images/telegram%20bot/fatoorahbot_cover_1768157167373.png',
+    image: '/images/telegram bot/fatoorahbot_cover_1768157167373.png',
     imageBg: 'linear-gradient(135deg, #0F172A 0%, #111827 100%)',
     badge: 'Freelance · 5.0 ★',
     badgeClass: 'bg-accent-blue/10 text-accent-blue border border-accent-blue/20',
@@ -230,7 +233,7 @@ const projects = [
     title: 'Polluscan',
     subtitle: 'Smart National Air Quality System',
     icon: '🌍',
-    image: '/images/polluscan/Screenshot%202026-01-01%20021037.png',
+    image: '/images/polluscan/Screenshot 2026-01-01 021037.png',
     imageBg: 'linear-gradient(135deg, #050816 0%, #0d1f35 100%)',
     badge: '🏆 National Finalist',
     badgeClass: 'bg-yellow-400/10 text-yellow-400 border border-yellow-400/20',
@@ -255,7 +258,7 @@ const projects = [
     title: 'Bareeq',
     subtitle: 'Handmade Art E-Commerce Platform',
     icon: '🎨',
-    image: '/images/bareeq/Screenshot%202026-01-01%20015711.png',
+    image: '/images/bareeq/Screenshot 2026-01-01 015711.png',
     imageBg: 'linear-gradient(135deg, #111827 0%, #1a0f1f 100%)',
     badge: 'Freelance',
     badgeClass: 'bg-white/5 text-text-secondary border border-white/10',
@@ -277,7 +280,7 @@ const projects = [
     title: 'OrgManager',
     subtitle: 'Employee Management System',
     icon: '🏢',
-    image: '/images/employee%20mng/Screenshot%202025-12-31%20224443.png',
+    image: '/images/employee mng/Screenshot 2025-12-31 224443.png',
     imageBg: 'linear-gradient(135deg, #0a1628 0%, #111827 100%)',
     badge: 'Freelance',
     badgeClass: 'bg-white/5 text-text-secondary border border-white/10',

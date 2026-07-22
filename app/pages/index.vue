@@ -56,7 +56,18 @@
 </template>
 
 <script setup lang="ts">
+import { defineAsyncComponent } from 'vue'
 import { currentPage } from '~/composables/usePageNav'
+import HeroSection from '~/components/HeroSection.vue'
+
+const AboutSection      = defineAsyncComponent(() => import('~/components/AboutSection.vue'))
+const StatsSection      = defineAsyncComponent(() => import('~/components/StatsSection.vue'))
+const ProjectsSection   = defineAsyncComponent(() => import('~/components/ProjectsSection.vue'))
+const PolluscanSection  = defineAsyncComponent(() => import('~/components/PolluscanSection.vue'))
+const TechStackSection  = defineAsyncComponent(() => import('~/components/TechStackSection.vue'))
+const ExperienceSection = defineAsyncComponent(() => import('~/components/ExperienceSection.vue'))
+const ContactSection    = defineAsyncComponent(() => import('~/components/ContactSection.vue'))
+const TheFooter         = defineAsyncComponent(() => import('~/components/TheFooter.vue'))
 
 const loaderDone = ref(false)
 
@@ -89,6 +100,7 @@ useHead({ title: 'Ahmed Najiebe — Digital Systems Engineer' })
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  contain: layout style paint;
 }
 
 .panel-inner {

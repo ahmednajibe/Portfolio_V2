@@ -94,6 +94,12 @@ function resize() {
   initParticles(cv.width, cv.height)
 }
 
+let resizeTimer: ReturnType<typeof setTimeout> | null = null
+function debouncedResize() {
+  if (resizeTimer) clearTimeout(resizeTimer)
+  resizeTimer = setTimeout(resize, 150)
+}
+
 function onMouseMove(e: MouseEvent) {
   const cv = canvas.value
   if (!cv) return
@@ -115,7 +121,7 @@ onMounted(() => {
   const section = canvas.value?.parentElement
   section?.addEventListener('mousemove', onMouseMove, { passive: true })
   section?.addEventListener('mouseleave', onMouseLeave)
-  window.addEventListener('resize', resize, { passive: true })
+  window.addEventListener('resize', debouncedResize, { passive: true })
 })
 
 // Pause/resume particles based on active panel
@@ -133,7 +139,7 @@ onUnmounted(() => {
   const section = canvas.value?.parentElement
   section?.removeEventListener('mousemove', onMouseMove)
   section?.removeEventListener('mouseleave', onMouseLeave)
-  window.removeEventListener('resize', resize)
+  window.removeEventListener('resize', debouncedResize)
 })
 </script>
 
@@ -145,5 +151,6 @@ onUnmounted(() => {
   height: 100%;
   pointer-events: none;
   z-index: 1;
+  will-change: transform;
 }
 </style>
