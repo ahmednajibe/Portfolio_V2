@@ -12,15 +12,36 @@ export default {
       fontFamily: {
         satoshi: ['Satoshi', 'sans-serif'],
         caveat: ['Caveat', 'cursive'],
+        // Mono carries all metadata, metrics and spec blocks.
+        // This is the "engineer" signal in the type system.
+        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       colors: {
-        'bg-primary': '#050816',
-        'bg-secondary': '#0F172A',
-        'surface': '#111827',
+        'bg-primary': '#060608',
+        'bg-secondary': '#0e0e12',
+        'surface': '#0f0f13',
+        'surface-raised': '#16161c',
         'text-primary': '#E5E7EB',
         'text-secondary': '#94A3B8',
-        'accent-blue': '#7DD3FC',
+        'text-tertiary': '#5b6575',
+
+        // SINGLE ACCENT. Differentiation comes from opacity and weight, not hue.
+        'accent': '#34D399',
+
+        // Deprecated aliases, both resolve to the single accent so the colour
+        // lock applies everywhere without touching 86 call sites.
+        // Prefer `accent` in new markup.
+        'accent-blue': '#34D399',
         'accent-green': '#34D399',
+      },
+      borderRadius: {
+        // Locked shape scale: containers 4px, interactive pills only.
+        'container': '4px',
+        'inner': '3px',
+      },
+      transitionTimingFunction: {
+        'entrance': 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'exit': 'cubic-bezier(0.7, 0, 0.84, 0)',
       },
       animation: {
         'grain': 'grain 8s steps(10) infinite',

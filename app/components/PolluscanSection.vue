@@ -71,7 +71,7 @@
         <NuxtImg
           src="/images/polluscan/Screenshot 2026-01-01 021037.png"
           alt="Polluscan Dashboard"
-          class="w-full object-cover object-top opacity-80 hover:opacity-100 transition-opacity duration-500 cursor-none"
+          class="w-full object-cover object-top opacity-80 hover:opacity-100 transition-opacity duration-500"
           format="webp"
           quality="85"
           loading="lazy"

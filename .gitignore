@@ -22,3 +22,8 @@ logs
 .env
 .env.*
 !.env.example
+
+# Private reference docs — contain internal client/company details, never publish
+COMPANY-WORK.md
+PORTFOLIO-MASTER.md
+repomix-output.xml

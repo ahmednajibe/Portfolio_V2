@@ -23,7 +23,7 @@
     <Transition name="fade">
       <button
         v-if="showBackToTop"
-        class="fixed bottom-24 right-6 z-40 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-text-secondary hover:text-white hover:bg-white/10 transition-all cursor-none"
+        class="fixed bottom-24 right-6 z-40 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-text-secondary hover:text-white hover:bg-white/10 transition-all"
         aria-label="Back to top"
         @click="scrollPanelToTop"
       >
@@ -54,8 +54,12 @@ function scrollPanelToTop() {
   if (activeScrollEl) activeScrollEl.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
-// Attach scroll listener and Lenis to active panel whenever page changes
+// Attach scroll listener and Lenis to active panel whenever page changes.
+// Guarded: this watcher is `immediate`, so on the server it would otherwise
+// reach `document.querySelector` and throw an unhandled rejection.
 watch(currentPage, (page) => {
+  if (!import.meta.client) return
+
   if (activeScrollEl) {
     activeScrollEl.removeEventListener('scroll', onPanelScroll)
     activeScrollEl = null
@@ -116,17 +120,25 @@ function setupWheelNav() {
   }
 
   function onKeyDown(e: KeyboardEvent) {
-    // Alt+C → toggle custom cursor (useful during DevTools inspection)
-    if (e.altKey && e.code === 'KeyC') {
-      document.body.classList.toggle('cursor-disabled')
-      return
-    }
+    if (isTransitioning.value) return
     const idx = PAGE_IDS.indexOf(currentPage.value)
+    const panel = document.querySelector(`[data-panel="${currentPage.value}"]`) as HTMLElement | null
+
     if (e.code === 'ArrowDown' || e.code === 'PageDown') {
-      if (idx < PAGE_IDS.length - 1) { e.preventDefault(); goToPage(PAGE_IDS[idx + 1]!) }
+      // Only jump to the next panel when the active panel is already at its
+      // bottom boundary. Otherwise let the user read the section normally.
+      const atBottom = !panel || panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 60
+      if (atBottom && idx < PAGE_IDS.length - 1) {
+        e.preventDefault()
+        goToPage(PAGE_IDS[idx + 1]!)
+      }
     }
     if (e.code === 'ArrowUp' || e.code === 'PageUp') {
-      if (idx > 0) { e.preventDefault(); goToPage(PAGE_IDS[idx - 1]!) }
+      const atTop = !panel || panel.scrollTop <= 60
+      if (atTop && idx > 0) {
+        e.preventDefault()
+        goToPage(PAGE_IDS[idx - 1]!)
+      }
     }
   }
 

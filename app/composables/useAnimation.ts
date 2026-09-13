@@ -71,8 +71,9 @@ function onEnterViewport(el: Element, callback: () => void) {
   const io = new IntersectionObserver(
     (entries) => {
       if (entries[0]?.isIntersecting) {
-        // Delay so animations start after panel transition completes
-        setTimeout(callback, 400)
+        // Delay so reveals start after the panel transition settles.
+        // Matches the tightened ~550ms transition in usePageNav.
+        setTimeout(callback, 240)
         io.disconnect()
       }
     },

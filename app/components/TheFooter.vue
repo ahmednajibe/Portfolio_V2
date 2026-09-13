@@ -8,9 +8,9 @@
         </div>
 
         <div class="flex items-center gap-6">
-          <a href="https://github.com/ahmednajibe" target="_blank" rel="noopener" class="text-text-secondary hover:text-text-primary transition-colors text-xs uppercase tracking-wider cursor-none">GitHub</a>
-          <a href="https://linkedin.com/in/ahmed-m-najibe" target="_blank" rel="noopener" class="text-text-secondary hover:text-text-primary transition-colors text-xs uppercase tracking-wider cursor-none">LinkedIn</a>
-          <a href="https://mostaql.com/u/lectara" target="_blank" rel="noopener" class="text-text-secondary hover:text-text-primary transition-colors text-xs uppercase tracking-wider cursor-none">Mostaql</a>
+          <a href="https://github.com/ahmednajibe" target="_blank" rel="noopener" class="text-text-secondary hover:text-text-primary transition-colors text-xs uppercase tracking-wider">GitHub</a>
+          <a href="https://linkedin.com/in/ahmed-m-najibe" target="_blank" rel="noopener" class="text-text-secondary hover:text-text-primary transition-colors text-xs uppercase tracking-wider">LinkedIn</a>
+          <a href="https://mostaql.com/u/lectara" target="_blank" rel="noopener" class="text-text-secondary hover:text-text-primary transition-colors text-xs uppercase tracking-wider">Mostaql</a>
         </div>
 
         <p class="text-text-secondary text-xs font-mono">

@@ -21,7 +21,7 @@
             <div
               v-for="(tech, i) in techs"
               :key="tech.name"
-              class="group cell cursor-none"
+              class="group cell"
             >
               <img :src="tech.logo" :alt="tech.name" class="logo-img" loading="lazy" />
               <span class="tech-name">{{ tech.name }}</span>
@@ -38,7 +38,7 @@
             :href="social.href"
             target="_blank"
             rel="noopener noreferrer"
-            class="social-link cursor-none"
+            class="social-link"
           >
             <component :is="social.icon" />
             <span class="social-tooltip">{{ social.label }}</span>

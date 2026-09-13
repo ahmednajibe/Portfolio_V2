@@ -43,13 +43,16 @@ export function goToPage(id: string) {
 
   const tl = gsap.timeline({ onComplete: () => { isTransitioning.value = false } })
 
-  // Wait for overlay to appear, then swap panels
-  tl.addLabel('swap', 0.3)
+  // Wait for the overlay label to land, then swap panels.
+  // Timings are tight on purpose: this runs on every navigation, so the whole
+  // transition stays around 550ms rather than the 1.3s the old handwriting
+  // overlay required.
+  tl.addLabel('swap', 0.14)
 
   if (prev) {
     tl.to(prev, {
       opacity : 0,
-      duration: 0.25,
+      duration: 0.18,
       ease    : 'power2.in',
       onComplete() {
         prev!.style.display = 'none'
@@ -64,15 +67,15 @@ export function goToPage(id: string) {
     if (import.meta.client) {
       window.history.pushState({ page: id }, '', `#${id}`)
     }
-  }, [], 'swap+=0.2')
+  }, [], 'swap+=0.12')
 
   tl.fromTo(
     next,
     { opacity: 0 },
-    { opacity: 1, duration: 0.4, ease: 'power2.out' },
-    'swap+=0.2',
+    { opacity: 1, duration: 0.3, ease: 'power2.out' },
+    'swap+=0.12',
   )
 
-  // Hide overlay after panels have fully switched
-  tl.call(() => { overlayVisible.value = false }, [], 'swap+=0.7')
+  // Hide overlay once the incoming panel is established
+  tl.call(() => { overlayVisible.value = false }, [], 'swap+=0.34')
 }

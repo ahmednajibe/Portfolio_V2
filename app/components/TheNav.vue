@@ -6,7 +6,7 @@
         v-for="item in links"
         :key="item.href"
         :href="item.href"
-        class="dock-item cursor-none"
+        class="dock-item"
         :class="{ 'dock-active': currentPage === item.section }"
         @click.prevent="goToPage(item.section)"
       >
@@ -59,10 +59,10 @@ const IconMail = () => h('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'c
 const links = [
   { href: '#hero',       label: 'Home',       section: 'hero',       icon: IconHome },
   { href: '#about',      label: 'About',      section: 'about',      icon: IconUser },
-  { href: '#stack',      label: 'Stack',      section: 'stack',      icon: IconLayers },
   { href: '#projects',   label: 'Projects',   section: 'projects',   icon: IconFolder },
-  { href: '#polluscan',  label: 'Polluscan',  section: 'polluscan',  icon: IconActivity },
   { href: '#experience', label: 'Experience', section: 'experience', icon: IconBriefcase },
+  { href: '#stack',      label: 'Stack',      section: 'stack',      icon: IconLayers },
+  { href: '#polluscan',  label: 'Polluscan',  section: 'polluscan',  icon: IconActivity },
   { href: '#contact',    label: 'Contact',    section: 'contact',    icon: IconMail },
 ]
 

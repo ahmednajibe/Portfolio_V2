@@ -23,10 +23,10 @@
         </div>
       </div>
 
-      <!-- Polluscan panel -->
-      <div data-panel="polluscan" class="page-panel">
+      <!-- Experience panel -->
+      <div data-panel="experience" class="page-panel">
         <div class="panel-inner">
-          <PolluscanSection />
+          <ExperienceSection />
         </div>
       </div>
 
@@ -37,10 +37,10 @@
         </div>
       </div>
 
-      <!-- Experience panel -->
-      <div data-panel="experience" class="page-panel">
+      <!-- Polluscan panel -->
+      <div data-panel="polluscan" class="page-panel">
         <div class="panel-inner">
-          <ExperienceSection />
+          <PolluscanSection />
         </div>
       </div>
 

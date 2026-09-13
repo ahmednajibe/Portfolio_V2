@@ -54,11 +54,11 @@
 
           <!-- Socials -->
           <div ref="socials" class="flex items-center gap-5 mt-10">
-            <a href="https://github.com/ahmednajibe" target="_blank" rel="noopener" class="text-text-secondary hover:text-white transition-colors cursor-none text-xs tracking-widest uppercase">GitHub</a>
+            <a href="https://github.com/ahmednajibe" target="_blank" rel="noopener" class="text-text-secondary hover:text-white transition-colors text-xs tracking-widest uppercase">GitHub</a>
             <span class="w-px h-3 bg-white/10" />
-            <a href="https://linkedin.com/in/ahmed-m-najibe" target="_blank" rel="noopener" class="text-text-secondary hover:text-white transition-colors cursor-none text-xs tracking-widest uppercase">LinkedIn</a>
+            <a href="https://linkedin.com/in/ahmed-m-najibe" target="_blank" rel="noopener" class="text-text-secondary hover:text-white transition-colors text-xs tracking-widest uppercase">LinkedIn</a>
             <span class="w-px h-3 bg-white/10" />
-            <a href="https://mostaql.com/u/lectara" target="_blank" rel="noopener" class="text-text-secondary hover:text-white transition-colors cursor-none text-xs tracking-widest uppercase">Mostaql</a>
+            <a href="https://mostaql.com/u/lectara" target="_blank" rel="noopener" class="text-text-secondary hover:text-white transition-colors text-xs tracking-widest uppercase">Mostaql</a>
           </div>
         </div>
 

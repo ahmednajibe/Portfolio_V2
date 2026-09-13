@@ -23,7 +23,7 @@
               <div>
                 <h3 class="text-text-primary font-bold text-lg leading-tight">{{ item.role }}</h3>
                 <p class="text-accent-blue text-sm mt-0.5">
-                  <a v-if="item.companyHref" :href="item.companyHref" target="_blank" rel="noopener" class="hover:text-accent-blue/80 transition-colors cursor-none">{{ item.company }}</a>
+                  <a v-if="item.companyHref" :href="item.companyHref" target="_blank" rel="noopener" class="hover:text-accent-blue/80 transition-colors">{{ item.company }}</a>
                   <span v-else>{{ item.company }}</span>
                 </p>
               </div>
