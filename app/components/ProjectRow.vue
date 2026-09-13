@@ -422,6 +422,20 @@ onMounted(() => {
 }
 
 /* ─────────────────────────────────────────────────────────────
+   MOBILE ASPECT RATIOS
+   Each variant gets a frame ratio that matches its screenshot shape
+   so `object-fit: cover` doesn't crop important content.
+   ───────────────────────────────────────────────────────────── */
+.prow--wide .prow-frame {
+  /* NCMH atlas is 21:9 — give it a wide frame, not the 16:10 default. */
+  aspect-ratio: 16 / 9;
+}
+.prow--immersive .prow-frame {
+  /* Dashboard TV view is 16:9 — match it. */
+  aspect-ratio: 16 / 9;
+}
+
+/* ─────────────────────────────────────────────────────────────
    LAYOUT FAMILIES
    Four distinct compositions so no two rows repeat a pattern.
    All of them collapse to the single-column base below 900px.
