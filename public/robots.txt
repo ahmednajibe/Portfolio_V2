@@ -1,2 +1,34 @@
+# All crawlers welcome — including AI assistants and search engines
 User-Agent: *
 Disallow:
+
+# Explicitly allow AI crawlers (some sites block these — we welcome them)
+User-Agent: GPTBot
+Allow: /
+
+User-Agent: OAI-SearchBot
+Allow: /
+
+User-Agent: ChatGPT-User
+Allow: /
+
+User-Agent: Google-Extended
+Allow: /
+
+User-Agent: PerplexityBot
+Allow: /
+
+User-Agent: ClaudeBot
+Allow: /
+
+User-Agent: anthropic-ai
+Allow: /
+
+User-Agent: Bytespider
+Allow: /
+
+User-Agent: CCBot
+Allow: /
+
+# Sitemap
+Sitemap: https://ahmednajibe.com/sitemap.xml

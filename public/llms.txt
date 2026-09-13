@@ -1,0 +1,60 @@
+# Ahmed Najiebe — Full-Stack Engineer
+
+> Full-stack engineer building production platforms for government, enterprise, and freelance clients. Specializes in Laravel, Vue/React, Python/Django, and real-time systems. Based in Cairo, working remotely for Saudi Arabian clients.
+
+## What I do
+
+I build end-to-end web platforms — from database design and API architecture to frontend interfaces and deployment. My work spans government health platforms, AI-powered recruitment systems, multi-tenant SaaS dashboards, and Telegram automation bots.
+
+## Core skills
+
+- **Backend:** Laravel (PHP), Django (Python), Node.js, REST API design, PostgreSQL, MySQL
+- **Frontend:** Vue 3, React, Next.js, Nuxt, TypeScript, Tailwind CSS
+- **AI integration:** CV parsing with OpenAI, AI candidate scoring, RAG pipelines, external AI API brokerage
+- **Real-time:** WebSockets, Telegram bot development (aiogram, python-telegram-bot)
+- **DevOps:** Git, Linux server administration, cPanel deployment, CI/CD
+- **Other:** Multi-tenant SaaS architecture, RBAC, real-time sync, PDF generation, Excel export
+
+## Selected projects
+
+### NCMH Platform (ncmh.org.sa)
+Saudi government public health platform — modernized content platform, healthcare atlas with interactive maps, and certificate verification system. Rebuilt solo from legacy monolith to Laravel API + Vue 3 SPA. 68 views, 62 models, 90+ API endpoints. Live at ncmh.org.sa.
+
+### 4D Careers (career.4d.sa)
+AI-powered recruitment platform. Applicants upload a CV and the form auto-fills via OpenAI parsing. HR gets AI-ranked candidates with weighted scoring across 6 criteria, and interview scheduling with calendar invites. Built solo end-to-end with Next.js, React, PostgreSQL. Live at career.4d.sa.
+
+### 4D Dashboard (dashboard.4d.sa)
+White-label multi-tenant SaaS for multiple client companies. Each tenant gets its own dashboards, maps (MapLibre), and an integrated AI assistant. Onboarding a new tenant is one admin record, not a code change. Built with React, Laravel, Filament. Live at dashboard.4d.sa.
+
+### TaskNodeBot
+Telegram bot for team task management. Three-tier roles, reviewed task lifecycle with revision loops, cloud file attachments, scheduled reminders, and unreachable-user detection. Built solo as a product with Python, SQLAlchemy, PostgreSQL, Cloudflare R2.
+
+## Also shipped
+
+- **4D Employees Portal** — HR hub with Microsoft Teams integration, silent SSO, native bot. Laravel + MS Teams + MySQL.
+- **FatoorahBot** — Invoice photo to structured editable data with line-item correction and Excel export. Python + aiogram + Gemini.
+- **OrgManager** — Three-role employee management with onboarding flows and PDF reporting. Vue 3 + TypeScript + Frappe.
+- **Bareeq** — Handmade art storefront with cash-on-delivery checkout and inventory dashboard. Flask + MySQL.
+
+## Experience
+
+- **Full Stack Developer, 4D (Saudi Arabia)** — Feb 2026 to present. Building AI-powered dashboards, government platforms, and recruitment systems with React, PHP, Python, PostgreSQL.
+- **Teaching Assistant, Ain Shams Academy** — Dec 2025 to Mar 2026. Taught SQL database design and Data Science to 20+ students.
+- **IT Branch Lead, Egyptian Armed Forces** — Oct 2024 to Dec 2025. Military service leading a 5-person technical team, managing 3 internal projects with Django and React.
+- **Course Instructor, Oraby Academy** — Aug 2023 to Sep 2024. Taught Python and OOP to 6-7 student groups.
+
+## Availability
+
+Available for full-time roles, freelance projects, and teaching opportunities. Responds within 24 hours.
+
+## Links
+
+- [Portfolio](https://ahmednajibe.com)
+- [GitHub](https://github.com/ahmednajibe)
+- [LinkedIn](https://linkedin.com/in/ahmed-m-najibe)
+- [Mostaql freelance profile](https://mostaql.com/u/lectara)
+- [Email](mailto:ahmed.m.najibe@gmail.com)
+
+## Location
+
+Cairo, Egypt (UTC+03:00) — working remotely

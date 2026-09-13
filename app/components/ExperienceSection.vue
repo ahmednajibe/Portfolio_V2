@@ -119,8 +119,8 @@ const timeline = [
     current: false,
     points: [
       'Directed IT operations and supervised a 5-person technical team managing 3 major projects.',
-      'Engineered a centralized VVIP Logistics System — reduced admin processing time by 75%.',
-      'Implemented 3-tier RBAC and WebSockets for real-time sync across 6 government entities.',
+      'Built internal logistics and delegation systems with Django, React, and PostgreSQL.',
+      'Implemented 3-tier RBAC and WebSockets for real-time sync across multiple government entities.',
     ],
     tech: ['Django', 'React.js', 'WebSockets', 'PostgreSQL', 'RBAC'],
   },

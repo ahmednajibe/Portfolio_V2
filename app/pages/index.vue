@@ -1,5 +1,58 @@
 <template>
   <div>
+    <!--
+      SEO / AI-crawler fallback.
+      The portfolio uses an intro loader and panel-based navigation, which
+      means a crawler that doesn't execute JS sees an empty page. This
+      noscript block gives every AI crawler and search engine the full
+      text content — who Ahmed is, what he built, and how to reach him.
+    -->
+    <noscript>
+      <div style="padding:2rem;max-width:800px;margin:0 auto;font-family:system-ui,sans-serif;color:#e5e7eb;background:#060608;">
+        <h1>Ahmed Najiebe — Full-Stack Engineer</h1>
+        <p>Full-stack engineer building production platforms for government, enterprise, and freelance clients. Specializes in Laravel, Vue/React, Python/Django, and real-time systems. Based in Cairo, Egypt, working remotely for Saudi Arabian clients.</p>
+
+        <h2>Selected Projects</h2>
+        <h3>NCMH Platform — ncmh.org.sa</h3>
+        <p>Saudi government public health platform. Modernized content platform, healthcare atlas with interactive maps, and certificate verification system. Rebuilt solo from legacy monolith to Laravel API + Vue 3 SPA. 68 views, 62 models, 90+ API endpoints. Live at ncmh.org.sa.</p>
+
+        <h3>4D Careers — career.4d.sa</h3>
+        <p>AI-powered recruitment platform. Applicants upload a CV and the form auto-fills via OpenAI parsing. HR gets AI-ranked candidates with weighted scoring across 6 criteria, and interview scheduling with calendar invites. Built solo end-to-end with Next.js, React, PostgreSQL. Live at career.4d.sa.</p>
+
+        <h3>4D Dashboard — dashboard.4d.sa</h3>
+        <p>White-label multi-tenant SaaS for multiple client companies. Each tenant gets its own dashboards, maps (MapLibre), and an integrated AI assistant. Onboarding a new tenant is one admin record, not a code change. Built with React, Laravel, Filament. Live at dashboard.4d.sa.</p>
+
+        <h3>TaskNodeBot</h3>
+        <p>Telegram bot for team task management. Three-tier roles, reviewed task lifecycle with revision loops, cloud file attachments, scheduled reminders, and unreachable-user detection. Built solo as a product with Python, SQLAlchemy, PostgreSQL, Cloudflare R2.</p>
+
+        <h2>Also Shipped</h2>
+        <ul>
+          <li><strong>4D Employees Portal</strong> — HR hub with Microsoft Teams integration, silent SSO, and a native bot. Laravel + MS Teams + MySQL.</li>
+          <li><strong>FatoorahBot</strong> — Invoice photo to structured editable data with line-item correction and Excel export. Python + aiogram + Gemini.</li>
+          <li><strong>OrgManager</strong> — Three-role employee management with onboarding flows and PDF reporting. Vue 3 + TypeScript + Frappe.</li>
+          <li><strong>Bareeq</strong> — Handmade art storefront with cash-on-delivery checkout and inventory dashboard. Flask + MySQL.</li>
+        </ul>
+
+        <h2>Experience</h2>
+        <ul>
+          <li><strong>Full Stack Developer, 4D (Saudi Arabia)</strong> — Feb 2026 to present. Building AI-powered dashboards, government platforms, and recruitment systems with React, PHP, Python, PostgreSQL.</li>
+          <li><strong>Teaching Assistant, Ain Shams Academy</strong> — Dec 2025 to Mar 2026. Taught SQL database design and Data Science to 20+ students.</li>
+          <li><strong>IT Branch Lead, Egyptian Armed Forces</strong> — Oct 2024 to Dec 2025. Military service leading a 5-person technical team, managing 3 internal projects with Django and React.</li>
+          <li><strong>Course Instructor, Oraby Academy</strong> — Aug 2023 to Sep 2024. Taught Python and OOP to 6-7 student groups.</li>
+        </ul>
+
+        <h2>Skills</h2>
+        <p>Laravel, Vue.js, React, Next.js, Nuxt, TypeScript, Python, Django, PostgreSQL, MySQL, Tailwind CSS, REST API design, multi-tenant SaaS architecture, RBAC, WebSockets, Telegram bot development, AI integration, CV parsing, real-time systems.</p>
+
+        <h2>Contact</h2>
+        <p>Email: ahmed.m.najibe@gmail.com<br/>
+        GitHub: github.com/ahmednajibe<br/>
+        LinkedIn: linkedin.com/in/ahmed-m-najibe<br/>
+        Mostaql: mostaql.com/u/lectara<br/>
+        Location: Cairo, Egypt (UTC+03:00) — working remotely</p>
+      </div>
+    </noscript>
+
     <IntroLoader @done="onLoaderDone" />
 
     <template v-if="loaderDone">
