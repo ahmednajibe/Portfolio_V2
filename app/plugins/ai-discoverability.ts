@@ -13,7 +13,7 @@
  *   sensitive project details.
  */
 
-const SITE_URL = 'https://ahmednajibe.com'
+const SITE_URL = 'https://ahmednajibe.me'
 
 export default defineNuxtPlugin(() => {
   useHead({
@@ -32,7 +32,7 @@ export default defineNuxtPlugin(() => {
           email: 'mailto:ahmed.m.najibe@gmail.com',
           address: {
             '@type': 'PostalAddress',
-            addressLocality: 'Cairo',
+            addressLocality: 'Suez',
             addressCountry: 'EG',
           },
           knowsAbout: [

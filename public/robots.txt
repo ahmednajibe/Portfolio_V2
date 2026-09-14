@@ -31,4 +31,4 @@ User-Agent: CCBot
 Allow: /
 
 # Sitemap
-Sitemap: https://ahmednajibe.com/sitemap.xml
+Sitemap: https://ahmednajibe.me/sitemap.xml

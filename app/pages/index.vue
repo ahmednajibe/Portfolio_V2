@@ -10,7 +10,7 @@
     <noscript>
       <div style="padding:2rem;max-width:800px;margin:0 auto;font-family:system-ui,sans-serif;color:#e5e7eb;background:#060608;">
         <h1>Ahmed Najiebe — Full-Stack Engineer</h1>
-        <p>Full-stack engineer building production platforms for government, enterprise, and freelance clients. Specializes in Laravel, Vue/React, Python/Django, and real-time systems. Based in Cairo, Egypt, working remotely for Saudi Arabian clients.</p>
+        <p>Full-stack engineer building production platforms for government, enterprise, and freelance clients. Specializes in Laravel, Vue/React, Python/Django, and real-time systems. Based in Suez, Egypt, working remotely for Saudi Arabian clients.</p>
 
         <h2>Selected Projects</h2>
         <h3>NCMH Platform — ncmh.org.sa</h3>
@@ -53,62 +53,71 @@
         GitHub: github.com/ahmednajibe<br/>
         LinkedIn: linkedin.com/in/ahmed-m-najibe<br/>
         Mostaql: mostaql.com/u/lectara<br/>
-        Location: Cairo, Egypt (UTC+03:00) — working remotely</p>
+        Location: Suez, Egypt (UTC+02:00) — working remotely</p>
       </div>
     </noscript>
 
     <IntroLoader @done="onLoaderDone" />
 
-    <template v-if="loaderDone">
-      <!-- Hero panel -->
-      <div data-panel="hero" class="page-panel">
-        <HeroSection :loaderDone="loaderDone" />
-      </div>
+    <!--
+      Panels are rendered unconditionally so the server-rendered HTML actually
+      contains the content. They used to sit behind `v-if="loaderDone"`, which
+      is false during SSR — so every crawler that does not execute JavaScript
+      (GPTBot, ClaudeBot, PerplexityBot) received an empty document.
 
-      <!-- About panel -->
-      <div data-panel="about" class="page-panel">
-        <div class="panel-inner">
-          <AboutSection />
-          <StatsSection />
-        </div>
-      </div>
+      Only the hero is visible before hydration; see the CSS at the bottom of
+      this file. `onLoaderDone` then takes over with explicit inline styles.
+      Reveal animations are driven by IntersectionObserver, which fires when a
+      hidden panel is later shown, so nothing is lost by starting hidden.
+    -->
+    <!-- Hero panel -->
+    <div data-panel="hero" class="page-panel">
+      <HeroSection :loaderDone="loaderDone" />
+    </div>
 
-      <!-- Projects panel -->
-      <div data-panel="projects" class="page-panel">
-        <div class="panel-inner">
-          <ProjectsSection />
-        </div>
+    <!-- About panel -->
+    <div data-panel="about" class="page-panel">
+      <div class="panel-inner">
+        <AboutSection />
+        <StatsSection />
       </div>
+    </div>
 
-      <!-- Experience panel -->
-      <div data-panel="experience" class="page-panel">
-        <div class="panel-inner">
-          <ExperienceSection />
-        </div>
+    <!-- Projects panel -->
+    <div data-panel="projects" class="page-panel">
+      <div class="panel-inner">
+        <ProjectsSection />
       </div>
+    </div>
 
-      <!-- Stack panel -->
-      <div data-panel="stack" class="page-panel">
-        <div class="panel-inner">
-          <TechStackSection />
-        </div>
+    <!-- Experience panel -->
+    <div data-panel="experience" class="page-panel">
+      <div class="panel-inner">
+        <ExperienceSection />
       </div>
+    </div>
 
-      <!-- Case study panel -->
-      <div data-panel="case-study" class="page-panel">
-        <div class="panel-inner">
-          <CaseStudySection />
-        </div>
+    <!-- Stack panel -->
+    <div data-panel="stack" class="page-panel">
+      <div class="panel-inner">
+        <TechStackSection />
       </div>
+    </div>
 
-      <!-- Contact panel -->
-      <div data-panel="contact" class="page-panel">
-        <div class="panel-inner">
-          <ContactSection />
-          <TheFooter />
-        </div>
+    <!-- Case study panel -->
+    <div data-panel="case-study" class="page-panel">
+      <div class="panel-inner">
+        <CaseStudySection />
       </div>
-    </template>
+    </div>
+
+    <!-- Contact panel -->
+    <div data-panel="contact" class="page-panel">
+      <div class="panel-inner">
+        <ContactSection />
+        <TheFooter />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -139,10 +148,12 @@ function onLoaderDone() {
 
     currentPage.value = target
 
-    // Hide all panels except the target
+    // Set display explicitly on every panel. The stylesheet only shows the
+    // hero before hydration, so the target must be turned on as well as the
+    // others turned off — otherwise deep links (#case-study) render blank.
     document.querySelectorAll('[data-panel]').forEach(el => {
       const panel = el as HTMLElement
-      if (panel.dataset.panel !== target) panel.style.display = 'none'
+      panel.style.display = panel.dataset.panel === target ? 'block' : 'none'
     })
   })
 }
@@ -158,6 +169,15 @@ useHead({ title: 'Ahmed Najiebe — Digital Systems Engineer' })
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   contain: layout style paint;
+}
+
+/* Every panel is in the server-rendered HTML so crawlers can read it, but
+   they are all `position: fixed; inset: 0` — without this they would stack on
+   top of each other until JavaScript runs. Only the hero shows pre-hydration;
+   `onLoaderDone` then sets inline `display` on every panel, which wins over
+   these rules. Hidden text still counts as page content for crawlers. */
+.page-panel:not([data-panel='hero']) {
+  display: none;
 }
 
 .panel-inner {

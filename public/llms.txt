@@ -1,6 +1,6 @@
 # Ahmed Najiebe — Full-Stack Engineer
 
-> Full-stack engineer building production platforms for government, enterprise, and freelance clients. Specializes in Laravel, Vue/React, Python/Django, and real-time systems. Based in Cairo, working remotely for Saudi Arabian clients.
+> Full-stack engineer building production platforms for government, enterprise, and freelance clients. Specializes in Laravel, Vue/React, Python/Django, and real-time systems. Based in Suez, working remotely for Saudi Arabian clients.
 
 ## What I do
 
@@ -60,7 +60,7 @@ Available for full-time roles, freelance projects, and teaching opportunities. R
 
 ## Links
 
-- [Portfolio](https://ahmednajibe.com)
+- [Portfolio](https://ahmednajibe.me)
 - [GitHub](https://github.com/ahmednajibe)
 - [LinkedIn](https://linkedin.com/in/ahmed-m-najibe)
 - [Mostaql freelance profile](https://mostaql.com/u/lectara)
@@ -68,4 +68,4 @@ Available for full-time roles, freelance projects, and teaching opportunities. R
 
 ## Location
 
-Cairo, Egypt (UTC+03:00) — working remotely
+Suez, Egypt (UTC+02:00) — working remotely

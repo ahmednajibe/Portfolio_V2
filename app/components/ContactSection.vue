@@ -26,11 +26,22 @@
         </a>
       </div>
 
-      <div ref="ctaEl" class="text-center">
+      <div ref="ctaEl" class="flex flex-wrap items-center justify-center gap-4">
         <a ref="ctaBtn" href="mailto:ahmed.m.najibe@gmail.com" class="btn-primary inline-flex text-base px-8 py-4">
           Send a Message
           <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </a>
+
+        <a
+          href="/cv/ahmed-najiebe-cv.pdf"
+          download
+          class="btn-ghost inline-flex text-base px-8 py-4"
+        >
+          Download CV
+          <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
           </svg>
         </a>
       </div>

@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ahmednajibe.com/</loc>
+    <loc>https://ahmednajibe.me/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://ahmednajibe.com/#about</loc>
+    <loc>https://ahmednajibe.me/#about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ahmednajibe.com/#projects</loc>
+    <loc>https://ahmednajibe.me/#projects</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ahmednajibe.com/#case-study</loc>
+    <loc>https://ahmednajibe.me/#case-study</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ahmednajibe.com/#stack</loc>
+    <loc>https://ahmednajibe.me/#stack</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://ahmednajibe.com/#experience</loc>
+    <loc>https://ahmednajibe.me/#experience</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ahmednajibe.com/#contact</loc>
+    <loc>https://ahmednajibe.me/#contact</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

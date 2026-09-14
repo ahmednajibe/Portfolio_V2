@@ -39,7 +39,7 @@
               <span class="text-text-primary">Available</span>
             </span>
             <span class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-text-secondary">
-              Cairo, EG · UTC+03:00
+              Suez, EG · UTC+02:00
             </span>
             <span class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-text-secondary">
               Currently @&nbsp;<span class="text-text-primary">4D · SA</span>

@@ -1,0 +1,258 @@
+%-------------------------
+% Resume in Latex
+% Author : Ahmed Mahmoud Najiebe
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{xcolor}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+%----------FONT OPTIONS----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Colors
+\definecolor{primaryColor}{RGB}{0, 79, 144}
+\definecolor{accentColor}{RGB}{70, 130, 180}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries\color{primaryColor}
+}{}{0em}{}[\color{primaryColor}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \scshape \textcolor{primaryColor}{Ahmed Najiebe}} \\ \vspace{4pt}
+    {\small \textcolor{accentColor}{Full-Stack Developer — Laravel · Vue · React · Django}} \\ \vspace{6pt}
+    \small
+    \raisebox{-0.1\height}\faPhone\ \underline{+20 155 501 3655} ~
+    \href{mailto:ahmed.m.najibe@gmail.com}{\raisebox{-0.2\height}\faEnvelope\  \underline{ahmed.m.najibe@gmail.com}} ~
+    \href{https://ahmednajibe.me}{\raisebox{-0.2\height}\faGlobe\ \underline{ahmednajibe.me}} \\ \vspace{3pt}
+    \href{https://linkedin.com/in/ahmed-m-najibe}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/ahmed-m-najibe}} ~
+    \href{https://github.com/ahmednajibe}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/ahmednajibe}} ~
+    \raisebox{-0.1\height}\faMapMarker\ \underline{Suez, Egypt (open to remote)}
+    \vspace{-8pt}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+\small{Full-Stack Developer with 2+ years building production web platforms for government and enterprise clients. Primary stack Laravel with Vue 3 / TypeScript and Next.js / React, plus Python and Django for automation and real-time systems. Experienced owning systems end to end — architecture, REST API design, database modelling, frontend delivery, and production debugging. Currently building government health and AI recruitment platforms for a Saudi healthcare technology company.}
+\vspace{-8pt}
+
+%-----------EXPERIENCE-----------
+\section{Work Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Full-Stack Developer}{Feb 2026 -- Present}
+      {4D (Medical Fourth Contact Centers), Saudi Arabia — Remote}{}
+      \resumeItemListStart
+        \resumeItem{Rebuilt a \textbf{Saudi government health platform} (\href{https://ncmh.org.sa/}{ncmh.org.sa}) from a legacy Laravel monolith into a versioned REST API powering a Vue 3 + TypeScript SPA — 68 views, 62 data models, 90+ endpoints, and a documented design system compliant with Saudi government platform standards. Proposed the rebuild, secured leadership approval, and delivered it solo.}
+        \resumeItem{Built an \textbf{AI recruitment platform} (\href{https://career.4d.sa/}{career.4d.sa}) solo end to end, where CV upload auto-fills the application form via OpenAI parsing, HR receives weighted AI candidate scoring with hash-based result caching, and interviews are scheduled with calendar invites and Microsoft Teams meetings — targeting an \textasciitilde80\% reduction in HR screening time.}
+        \resumeItem{Architected a \textbf{multi-tenant white-label B2B SaaS analytics portal} (React/MUI + Laravel + Filament): onboarding a new tenant is a single admin-panel record, with each tenant's upstream API brokered through a server-side proxy using per-user encrypted credentials so no key ever reaches the browser.}
+        \resumeItem{Took ownership of the internal \textbf{HR portal} (262 commits) and made it the company's operations hub — SMS OTP authentication over a Saudi gateway, an instructions system with read-tracking analytics, IT ticketing, and a central OTP/identity API consumed by other internal systems.}
+        \resumeItem{Delivered deep \textbf{Microsoft Teams integration}: a Teams Tab with silent Entra ID SSO and a native Bot Framework bot with Adaptive Cards, hosted on existing cPanel infrastructure at zero additional cloud cost.}
+        \resumeItem{Diagnosed a production outage that produced \textbf{no entry in any application log} — an upstream WAF was silently blocking responses because a facility licence number passed a credit-card checksum — by bisecting the JSON payload field by field over HTTP, then documented the root cause and long-term fix for the team.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Teaching Assistant (Data Science \& SQL)}{Dec 2025 -- Mar 2026}
+      {Ain Shams Academy}{}
+      \resumeItemListStart
+        \resumeItem{Taught SQL database design and management to 20+ students, covering normalization, indexing, and query optimization.}
+        \resumeItem{Assisted in Data Science modules on data analysis and predictive modelling, achieving an 85\% average student satisfaction rating.}
+        \resumeItem{Led 8 hands-on sessions on hardware troubleshooting and system diagnostics, simplifying complex technical concepts.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {IT Branch Lead \& Full-Stack Developer}{Oct 2024 -- Dec 2025}
+      {Egyptian Armed Forces — Military Service}{}
+      \resumeItemListStart
+        \resumeItem{Directed IT operations and supervised a 5-person technical team delivering 3 internal projects.}
+        \resumeItem{Co-built the backend of a \textbf{real-time logistics coordination platform} (with one collaborator handling the frontend) — Django REST Framework API over PostgreSQL with 13 data models, three-tier role-based access control, and audit logging.}
+        \resumeItem{Implemented \textbf{WebSocket push via Django Channels} so multiple operators mutating the same records stay in sync, with derived status recomputed automatically through model signals.}
+        \resumeItem{Built multi-template PDF and Excel reporting with full \textbf{Arabic RTL} rendering (ReportLab with glyph reshaping and bidirectional text handling), and packaged on-premises LAN deployment with one-click installers for non-technical operators.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Course Instructor (Python \& OOP)}{Aug 2023 -- Sep 2024}
+      {Oraby Academy}{}
+      \resumeItemListStart
+        \resumeItem{Designed and delivered 5 structured curricula for Python and Object-Oriented Programming across 6-7 student groups, teaching 30+ students.}
+        \resumeItem{Achieved a 90\% course completion rate through engaging teaching methods, personalized attention, and strong student relationships.}
+        \resumeItem{Created regular hands-on coding exercises and end-of-course projects to reinforce concepts and ensure practical skill development.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-16pt}
+
+%-----------PROJECTS-----------
+\section{Independent Projects}
+    \vspace{-5pt}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{TaskNodeBot} $|$ \emph{Python, python-telegram-bot, async SQLAlchemy, PostgreSQL, Cloudflare R2}}{2026}
+          \resumeItemListStart
+            \resumeItem{Built a Telegram-native task management product for organisations — three-tier role-based access control, a reviewed task lifecycle with revision loops, and cloud file attachments.}
+            \resumeItem{Structured as 20 handlers, 8 data models, and 9 service modules, with 2 scheduled jobs for reminders and unreachable-user detection.}
+            \resumeItem{Added PDF and Excel reporting over an asynchronous SQLAlchemy data layer.}
+          \resumeItemListEnd
+          \vspace{-14pt}
+
+      \resumeProjectHeading
+          {\textbf{FatoorahBot} $|$ \emph{Python, aiogram 3, Google Gemini}}{2026}
+          \resumeItemListStart
+            \resumeItem{Turns a photographed invoice into structured, editable data using Gemini extraction with a finite-state-machine conversation flow.}
+            \resumeItem{Supports full inline line-item correction, VAT-inclusive handling, and Excel export.}
+          \resumeItemListEnd
+          \vspace{-14pt}
+
+      \resumeProjectHeading
+          {\textbf{Polluscan} $|$ \emph{Flask, MySQL, Chart.js, hardware sensor prototype} — Graduation Project}{2024}
+          \resumeItemListStart
+            \resumeItem{Industrial pollution monitoring platform with a 5-level government role hierarchy (country, state, district, factory, branch), where every dashboard and aggregate query is scoped to the signed-in user's jurisdiction.}
+            \resumeItem{Implemented cascading administrative-region management, sensor reading ingestion, and a violations/fines module, with a dedicated dashboard per role.}
+            \resumeItem{Integrated a working hardware sensor prototype for live environmental readings.}
+          \resumeItemListEnd
+          \vspace{-14pt}
+
+      \resumeProjectHeading
+          {\textbf{Bareeq} $|$ \emph{Flask, MySQL} — Freelance}{Feb 2024 -- Apr 2024}
+          \resumeItemListStart
+            \resumeItem{B2C marketplace for handmade crafts with a multi-level category hierarchy and cash-on-delivery checkout tailored to the Egyptian market.}
+            \resumeItem{Built an administrative dashboard with dynamic category management, inventory tracking, and automated invoice generation.}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+\vspace{-12pt}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Bachelor of Computer Science}{2020 -- 2024}
+      {Faculty of Computers and Information, Suez University}{}
+  \resumeSubHeadingListEnd
+\vspace{-8pt}
+
+%-----------SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, PHP, JavaScript (ES6+), TypeScript, SQL} \\
+     \textbf{Frontend}{: Vue 3, React, Next.js, Nuxt, Tailwind CSS, Material-UI, Vite, Responsive \& RTL UI} \\
+     \textbf{Backend}{: Laravel, Django \& DRF, Flask, RESTful API design, WebSockets (Django Channels), Filament} \\
+     \textbf{Databases}{: MySQL, PostgreSQL, SQLite, schema design, query optimization, Eloquent / Prisma / SQLAlchemy} \\
+     \textbf{AI \& Integrations}{: OpenAI (CV parsing, weighted scoring), Gemini (invoice OCR), RAG pipelines, Microsoft Teams (Entra ID SSO, Bot Framework), Telegram (python-telegram-bot, aiogram)} \\
+     \textbf{Tools \& Infrastructure}{: Git, GitHub, Docker Compose, cPanel, Vercel, Cloudflare R2, Redis, Postman} \\
+     \textbf{Core Competencies}{: RBAC, multi-tenant architecture, application security (CSP, OTP, JWT, rate limiting), Arabic RTL engineering, PDF/Excel reporting, legacy modernisation, production debugging} \\
+    }}
+ \end{itemize}
+ \vspace{-16pt}
+
+%-----------CERTIFICATES-----------
+\section{Certificates}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     Cisco Cybersecurity \textbullet{} Python Data Structures \textbullet{} Web Development Challenger \\
+    }}
+ \end{itemize}
+ \vspace{-16pt}
+
+%-----------LANGUAGES-----------
+\section{Languages}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Arabic}{: Native Proficiency} \\
+     \textbf{English}{: Professional Working Proficiency} \\
+    }}
+ \end{itemize}
+
+\end{document}
