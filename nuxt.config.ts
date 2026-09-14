@@ -94,9 +94,6 @@ export default defineNuxtConfig({
       // all 7 panel chunks to download immediately even though only the
       // hero is visible. Panels load on-demand when navigated to.
       modulePreload: false,
-      // Bundle all CSS into one file so it can be inlined into the HTML,
-      // eliminating render-blocking stylesheet requests.
-      cssCodeSplit: false,
     },
   },
 })
