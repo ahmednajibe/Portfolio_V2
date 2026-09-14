@@ -14,8 +14,8 @@
           :alt="`${project.title} interface`"
           class="prow-photo"
           format="webp"
-          quality="95"
-          sizes="100vw sm:100vw lg:50vw"
+          quality="98"
+          sizes="100vw sm:100vw lg:1000px xl:1600px"
           loading="lazy"
           decoding="async"
         />

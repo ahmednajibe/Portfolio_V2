@@ -70,8 +70,8 @@
                 :alt="shot.alt"
                 class="w-full h-auto block"
                 format="webp"
-                quality="95"
-                sizes="sm:100vw md:50vw"
+                quality="98"
+                sizes="sm:100vw md:800px lg:1000px xl:1600px"
                 loading="lazy"
                 decoding="async"
               />
