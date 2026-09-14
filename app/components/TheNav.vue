@@ -61,9 +61,9 @@ const links = [
   { href: '#hero',       label: 'Home',       section: 'hero',       icon: IconHome },
   { href: '#about',      label: 'About',      section: 'about',      icon: IconUser },
   { href: '#projects',   label: 'Projects',   section: 'projects',   icon: IconFolder },
-  { href: '#case-study', label: 'Case Study', section: 'case-study', icon: IconSearch },
-  { href: '#stack',      label: 'Stack',      section: 'stack',      icon: IconLayers },
   { href: '#experience', label: 'Experience', section: 'experience', icon: IconBriefcase },
+  { href: '#stack',      label: 'Stack',      section: 'stack',      icon: IconLayers },
+  { href: '#case-study', label: 'Case Study', section: 'case-study', icon: IconSearch },
   { href: '#contact',    label: 'Contact',    section: 'contact',    icon: IconMail },
 ]
 
@@ -152,12 +152,8 @@ onMounted(() => {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Tooltip — only on devices that support hover (prevents stuck
-   tooltips on touch, where :hover persists after tap) */
-@media (hover: hover) {
-  .dock-item:hover .dock-tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+.dock-item:hover .dock-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 </style>
