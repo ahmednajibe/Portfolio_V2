@@ -235,6 +235,13 @@ const secondaryProjects: SecondaryProject[] = [
     year: '2024',
     videoId: 'ijH0xg44d-g',
   },
+  {
+    title: 'Polluscan',
+    blurb: 'Graduation project — pollution monitoring with a five-level government role hierarchy and a hardware sensor prototype',
+    stack: 'Flask · MySQL · Chart.js',
+    year: '2024',
+    videoId: 'bIxIA4zmvHs',
+  },
 ]
 
 onMounted(() => {

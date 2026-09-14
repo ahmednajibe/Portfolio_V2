@@ -48,8 +48,9 @@ const IconBriefcase = () => h('svg', { viewBox: '0 0 24 24', fill: 'none', strok
   h('rect', { x: '2', y: '7', width: '20', height: '14', rx: '2' }),
   h('path', { d: 'M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2' }),
 ])
-const IconActivity = () => h('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.8', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
-  h('polyline', { points: '22 12 18 12 15 21 9 3 6 12 2 12' }),
+const IconSearch = () => h('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.8', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
+  h('circle', { cx: '11', cy: '11', r: '7' }),
+  h('path', { d: 'M20 20l-4.35-4.35' }),
 ])
 const IconMail = () => h('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.8', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
   h('rect', { x: '2', y: '4', width: '20', height: '16', rx: '2' }),
@@ -62,7 +63,7 @@ const links = [
   { href: '#projects',   label: 'Projects',   section: 'projects',   icon: IconFolder },
   { href: '#experience', label: 'Experience', section: 'experience', icon: IconBriefcase },
   { href: '#stack',      label: 'Stack',      section: 'stack',      icon: IconLayers },
-  { href: '#polluscan',  label: 'Polluscan',  section: 'polluscan',  icon: IconActivity },
+  { href: '#case-study', label: 'Case Study', section: 'case-study', icon: IconSearch },
   { href: '#contact',    label: 'Contact',    section: 'contact',    icon: IconMail },
 ]
 

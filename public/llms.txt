@@ -35,6 +35,17 @@ Telegram bot for team task management. Three-tier roles, reviewed task lifecycle
 - **FatoorahBot** — Invoice photo to structured editable data with line-item correction and Excel export. Python + aiogram + Gemini.
 - **OrgManager** — Three-role employee management with onboarding flows and PDF reporting. Vue 3 + TypeScript + Frappe.
 - **Bareeq** — Handmade art storefront with cash-on-delivery checkout and inventory dashboard. Flask + MySQL.
+- **Polluscan** — Graduation project. Pollution monitoring platform with a five-level government role hierarchy (country → state → district → factory → branch) and a working hardware sensor prototype. Flask + MySQL + Chart.js.
+
+## Case study — debugging an HTTP 500 with no logs
+
+A single page of the NCMH healthcare-facilities Atlas returned HTTP 500 in production with nothing in any log — not Laravel, not PHP, not Apache. `HEAD` returned 200 while `GET` returned 500, and the identical query ran clean under `artisan tinker`, which ruled out the application layer.
+
+I bisected the JSON response field by field over HTTP until one field flipped the status. Root cause: a network-level WAF appliance in front of the server inspects response bodies. One facility record held a sixteen-digit licence number that satisfied the Luhn checksum, so the appliance's credit-card DLP signature concluded the API was leaking a payment card and substituted its own block page. Only that one Atlas page broke, because it was the only page containing that record.
+
+Fixed by removing the field from public API responses, where it never belonged — the correct fix and the minimal fix were the same change. Documented the failure mode and the proper long-term remedy (a targeted WAF signature exemption rather than shaping payloads around it) in the repository's engineering notes.
+
+This is the work sample I'd point a hiring manager at: production debugging, infrastructure reasoning, security judgment, and documentation discipline in one incident.
 
 ## Experience
 

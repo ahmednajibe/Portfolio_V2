@@ -5,7 +5,7 @@ export const isTransitioning = ref(false)
 export const overlayText    = ref('')
 export const overlayVisible = ref(false)
 
-export const PAGE_IDS = ['hero', 'about', 'projects', 'polluscan', 'stack', 'experience', 'contact']
+export const PAGE_IDS = ['hero', 'about', 'projects', 'case-study', 'stack', 'experience', 'contact']
 
 // Sync currentPage with URL hash for deep linking
 if (import.meta.client) {
@@ -22,7 +22,7 @@ const SECTION_NAMES: Record<string, string> = {
   about:      'About',
   stack:      'Stack',
   projects:   'Projects',
-  polluscan:  'Polluscan',
+  'case-study': 'Case Study',
   experience: 'Experience',
   contact:    'Contact',
 }

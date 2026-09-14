@@ -182,7 +182,12 @@ function setupParallax() {
   }
 }
 
-const projectCount = 5
+/**
+ * Keep this consistent with the "10+ Projects Shipped" figure in
+ * StatsSection and AboutSection. Backed by 12 repositories with authored
+ * commits (see the evidence ledger in the private master reference).
+ */
+const projectCount = 10
 
 const props = defineProps<{ loaderDone: boolean }>()
 const { loaderDone } = toRefs(props)

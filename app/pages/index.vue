@@ -31,7 +31,11 @@
           <li><strong>FatoorahBot</strong> — Invoice photo to structured editable data with line-item correction and Excel export. Python + aiogram + Gemini.</li>
           <li><strong>OrgManager</strong> — Three-role employee management with onboarding flows and PDF reporting. Vue 3 + TypeScript + Frappe.</li>
           <li><strong>Bareeq</strong> — Handmade art storefront with cash-on-delivery checkout and inventory dashboard. Flask + MySQL.</li>
+          <li><strong>Polluscan</strong> — Graduation project. Pollution monitoring platform with a five-level government role hierarchy and a hardware sensor prototype. Flask + MySQL + Chart.js.</li>
         </ul>
+
+        <h2>Case Study: Debugging a 500 With No Logs</h2>
+        <p>A single page of the NCMH healthcare-facilities Atlas returned HTTP 500 in production with nothing in any log — not Laravel, not PHP, not Apache. HEAD returned 200 while GET returned 500, and the same query ran clean under artisan tinker, which ruled out the application. I bisected the JSON response field by field over HTTP until one field flipped the status. Root cause: a network-level WAF appliance in front of the server inspects response bodies, and one facility record held a sixteen-digit licence number that satisfied the Luhn checksum — so the appliance's credit-card DLP signature concluded the API was leaking a payment card and substituted its own block page. Fixed by removing the field from public API responses, where it never belonged, and documented the proper long-term remedy (a targeted WAF signature exemption) in the repository's engineering notes. Demonstrates production debugging, infrastructure reasoning, security judgment, and documentation discipline.</p>
 
         <h2>Experience</h2>
         <ul>
@@ -90,10 +94,10 @@
         </div>
       </div>
 
-      <!-- Polluscan panel -->
-      <div data-panel="polluscan" class="page-panel">
+      <!-- Case study panel -->
+      <div data-panel="case-study" class="page-panel">
         <div class="panel-inner">
-          <PolluscanSection />
+          <CaseStudySection />
         </div>
       </div>
 
@@ -110,13 +114,13 @@
 
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
-import { currentPage } from '~/composables/usePageNav'
+import { currentPage, PAGE_IDS } from '~/composables/usePageNav'
 import HeroSection from '~/components/HeroSection.vue'
 
 const AboutSection      = defineAsyncComponent(() => import('~/components/AboutSection.vue'))
 const StatsSection      = defineAsyncComponent(() => import('~/components/StatsSection.vue'))
 const ProjectsSection   = defineAsyncComponent(() => import('~/components/ProjectsSection.vue'))
-const PolluscanSection  = defineAsyncComponent(() => import('~/components/PolluscanSection.vue'))
+const CaseStudySection  = defineAsyncComponent(() => import('~/components/CaseStudySection.vue'))
 const TechStackSection  = defineAsyncComponent(() => import('~/components/TechStackSection.vue'))
 const ExperienceSection = defineAsyncComponent(() => import('~/components/ExperienceSection.vue'))
 const ContactSection    = defineAsyncComponent(() => import('~/components/ContactSection.vue'))
@@ -129,7 +133,7 @@ function onLoaderDone() {
   nextTick(() => {
     // Determine which panel to show from URL hash
     const hash = window.location.hash.slice(1)
-    const target = ['hero', 'about', 'projects', 'polluscan', 'stack', 'experience', 'contact'].includes(hash)
+    const target = PAGE_IDS.includes(hash)
       ? hash
       : 'hero'
 
