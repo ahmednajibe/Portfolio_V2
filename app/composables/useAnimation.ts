@@ -3,9 +3,12 @@
  *
  * All timing, easing, and scroll-reveal logic lives here.
  * Components import from this composable only — no raw gsap calls scattered around.
+ *
+ * ScrollTrigger is lazy-loaded to keep it out of the initial JS bundle.
+ * Reveal setup is deferred to requestIdleCallback to avoid forced reflow
+ * during hydration.
  */
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 // ─────────────────────────────────────────────
 // REDUCED MOTION
@@ -53,14 +56,20 @@ export const STAGGER = {
 export const SCROLL_START = 'top 82%'
 
 // ─────────────────────────────────────────────
-// SETUP
+// SETUP — ScrollTrigger lazy-loaded
 // ─────────────────────────────────────────────
 
 let registered = false
-function ensureRegistered() {
-  if (registered) return
-  gsap.registerPlugin(ScrollTrigger)
-  registered = true
+let registering: Promise<void> | null = null
+
+function ensureRegistered(): Promise<void> {
+  if (registered) return Promise.resolve()
+  if (registering) return registering
+  registering = import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+    gsap.registerPlugin(ScrollTrigger)
+    registered = true
+  })
+  return registering
 }
 
 /**
@@ -207,16 +216,16 @@ export function revealScale(el: HTMLElement | null, opts: RevealOpts & { scale?:
 export function useAnimation() {
   // Defer ScrollTrigger registration to idle time to reduce main-thread
   // blocking during hydration. All 7 panels mount simultaneously but only
-  // the hero is visible — non-critical animation setup can wait.
+  // the hero is visible — ScrollTrigger isn't needed until navigation.
   onMounted(() => {
     const schedule = (cb: () => void) => {
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(cb, { timeout: 1000 })
+        requestIdleCallback(cb, { timeout: 2000 })
       } else {
-        setTimeout(cb, 50)
+        setTimeout(cb, 200)
       }
     }
-    schedule(() => ensureRegistered())
+    schedule(() => { ensureRegistered() })
   })
   return {
     revealFadeUp,

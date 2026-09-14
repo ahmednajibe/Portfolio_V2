@@ -37,7 +37,6 @@
 
 <script setup lang="ts">
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import { currentPage, isTransitioning, PAGE_IDS, goToPage } from '~/composables/usePageNav'
 
@@ -233,7 +232,10 @@ let cleanup: (() => void) | null = null
 
 onMounted(() => {
   if (import.meta.client) {
-    gsap.registerPlugin(ScrollTrigger)
+    // Lazy-load ScrollTrigger — not needed for initial render
+    import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+      gsap.registerPlugin(ScrollTrigger)
+    })
     cleanup = setupWheelNav()
   }
 })
