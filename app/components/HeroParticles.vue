@@ -115,13 +115,21 @@ function onMouseLeave() {
 
 onMounted(() => {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-  resize()
-  draw()
-
-  const section = canvas.value?.parentElement
-  section?.addEventListener('mousemove', onMouseMove, { passive: true })
-  section?.addEventListener('mouseleave', onMouseLeave)
-  window.addEventListener('resize', debouncedResize, { passive: true })
+  // Defer canvas init to idle time to reduce hydration main-thread blocking.
+  // The particles are decorative — they don't need to start on the first frame.
+  const start = () => {
+    resize()
+    draw()
+    const section = canvas.value?.parentElement
+    section?.addEventListener('mousemove', onMouseMove, { passive: true })
+    section?.addEventListener('mouseleave', onMouseLeave)
+    window.addEventListener('resize', debouncedResize, { passive: true })
+  }
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(start, { timeout: 800 })
+  } else {
+    setTimeout(start, 100)
+  }
 })
 
 // Pause/resume particles based on active panel

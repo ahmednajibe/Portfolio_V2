@@ -55,22 +55,6 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'canonical', href: 'https://ahmednajibe.me' },
-        { rel: 'preconnect', href: 'https://api.fontshare.com' },
-        {
-          rel: 'preload',
-          as: 'style',
-          href: 'https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap'
-        },
-        {
-          rel: 'stylesheet',
-          href: 'https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap'
-        },
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=JetBrains+Mono:wght@400;500;700&display=swap'
-        }
       ]
     },
     pageTransition: { name: 'page', mode: 'out-in' }
@@ -79,6 +63,18 @@ export default defineNuxtConfig({
   tailwindcss: {
     cssPath: '~/assets/css/main.css',
     exposeConfig: true,
+  },
+
+  // Prerender the homepage as static HTML so Vercel's edge CDN can serve it
+  // without hitting the server. This eliminates server TTFB from the FCP
+  // critical path. compressPublicAssets gzip/brotli-compresses fonts and
+  // images in public/ at build time for smaller transfers.
+  nitro: {
+    compressPublicAssets: true,
+    prerender: {
+      routes: ['/'],
+      crawlLinks: false,
+    },
   },
 
   vite: {

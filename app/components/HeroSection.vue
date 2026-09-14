@@ -76,11 +76,14 @@
             <!-- Main card -->
             <div class="relative rounded-[6px] overflow-hidden border border-white/10 aspect-[3/4] bg-surface">
               <NuxtImg
-                src="/images/my pic.png"
+                src="/images/portrait.webp"
                 alt="Ahmed Najiebe"
                 class="w-full h-full object-cover object-top"
                 format="webp"
                 quality="90"
+                sizes="220px sm:260px lg:300px xl:340px"
+                width="340"
+                height="453"
                 loading="eager"
                 fetchpriority="high"
                 decoding="async"

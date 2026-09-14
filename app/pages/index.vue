@@ -148,10 +148,11 @@ function onLoaderDone() {
 
     currentPage.value = target
 
-    // Set display explicitly on every panel. The stylesheet only shows the
-    // hero before hydration, so the target must be turned on as well as the
-    // others turned off — otherwise deep links (#case-study) render blank.
-    document.querySelectorAll('[data-panel]').forEach(el => {
+    // Batch: read all panels first (single querySelectorAll), then write
+    // all display values in one synchronous pass. This minimizes reflow
+    // by avoiding interleaved read/write cycles.
+    const panels = document.querySelectorAll('[data-panel]')
+    panels.forEach(el => {
       const panel = el as HTMLElement
       panel.style.display = panel.dataset.panel === target ? 'block' : 'none'
     })

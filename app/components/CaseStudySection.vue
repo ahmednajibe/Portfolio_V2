@@ -157,12 +157,12 @@ const facts = [
 
 const shots = [
   {
-    src: '/images/ncmh/verify-certificates.png',
+    src: '/images/ncmh/verify-certificates.webp',
     alt: 'NCMH certificate verification page, where a citizen can look up and validate a training certificate',
     caption: 'Public certificate verification — QR and lookup based.',
   },
   {
-    src: '/images/ncmh/flipbook.png',
+    src: '/images/ncmh/flipbook.webp',
     alt: 'NCMH PDF flipbook reader rendering a publication as a page-turning book',
     caption: 'PDF flipbook reader for platform publications.',
   },

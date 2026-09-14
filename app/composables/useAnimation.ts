@@ -205,7 +205,19 @@ export function revealScale(el: HTMLElement | null, opts: RevealOpts & { scale?:
  *   const { revealFadeUp, revealStagger, ... } = useAnimation()
  */
 export function useAnimation() {
-  onMounted(() => ensureRegistered())
+  // Defer ScrollTrigger registration to idle time to reduce main-thread
+  // blocking during hydration. All 7 panels mount simultaneously but only
+  // the hero is visible — non-critical animation setup can wait.
+  onMounted(() => {
+    const schedule = (cb: () => void) => {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(cb, { timeout: 1000 })
+      } else {
+        setTimeout(cb, 50)
+      }
+    }
+    schedule(() => ensureRegistered())
+  })
   return {
     revealFadeUp,
     revealStagger,
