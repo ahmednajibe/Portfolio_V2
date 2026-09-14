@@ -28,7 +28,7 @@ export default defineNuxtPlugin(() => {
           description:
             'Full-stack engineer building production platforms for government, enterprise, and freelance clients. Specializes in Laravel, Vue/React, Python/Django, and real-time systems.',
           url: SITE_URL,
-          image: `${SITE_URL}/images/avatar.png`,
+          image: `${SITE_URL}/og-image.jpg`,
           email: 'mailto:ahmed.m.najibe@gmail.com',
           address: {
             '@type': 'PostalAddress',

@@ -109,8 +109,9 @@
       </div>
     </div>
 
-    <!-- Scroll -->
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+    <!-- Scroll hint. Sits above the fixed nav dock (which is also at
+         bottom-6 / left-1/2) so the two don't overlap. -->
+    <div class="absolute bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 pointer-events-none">
       <span class="text-[10px] tracking-[0.2em] uppercase text-white">Scroll</span>
       <div class="w-px h-8 bg-gradient-to-b from-white to-transparent" />
     </div>

@@ -94,21 +94,27 @@ onMounted(() => {
   overflow: visible;
 }
 
+/* Touch targets: 7 items must fit the narrowest phones, so the hit area
+   scales up as soon as there is room for it. 40px at 360px wide
+   (7x40 + padding = 296px), the full 44px from 380px up. */
 .dock-item {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   color: rgba(148, 163, 184, 0.4);
   transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
+@media (min-width: 380px) {
+  .dock-item { width: 44px; height: 44px; }
+}
+
 @media (min-width: 640px) {
   .dock { padding: 8px 12px; }
-  .dock-item { width: 38px; height: 38px; }
 }
 
 .dock-item:hover {

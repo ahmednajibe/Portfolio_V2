@@ -422,16 +422,22 @@ onMounted(() => {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   MOBILE ASPECT RATIOS
-   Each variant gets a frame ratio that matches its screenshot shape
-   so `object-fit: cover` doesn't crop important content.
+   FRAME RATIOS
+   Each frame matches the native ratio of its screenshot so
+   `object-fit: cover` has nothing to crop. Screenshots are:
+     wide          → 1916x821  (21:9)
+     split         → 1448x1086 (4:3)
+     immersive     → 1920x1080 (16:9)
+     split-reverse → 1448x1086 (4:3)
    ───────────────────────────────────────────────────────────── */
 .prow--wide .prow-frame {
-  /* NCMH atlas is 21:9 — give it a wide frame, not the 16:10 default. */
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 21 / 9;
+}
+.prow--split .prow-frame,
+.prow--split-reverse .prow-frame {
+  aspect-ratio: 4 / 3;
 }
 .prow--immersive .prow-frame {
-  /* Dashboard TV view is 16:9 — match it. */
   aspect-ratio: 16 / 9;
 }
 

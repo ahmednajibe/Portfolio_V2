@@ -33,7 +33,10 @@ export default defineNuxtConfig({
             'Full-stack engineer building production platforms for government and enterprise. Laravel, Vue, React, Python, Django. Shipped NCMH, 4D Careers, 4D Dashboard, TaskNodeBot.',
         },
         { property: 'og:url', content: 'https://ahmednajibe.com' },
-        { property: 'og:image', content: 'https://ahmednajibe.com/images/avatar.png' },
+        { property: 'og:image', content: 'https://ahmednajibe.com/og-image.jpg' },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:image:alt', content: 'Ahmed Najiebe — Full-Stack Engineer' },
         { property: 'og:locale', content: 'en_US' },
         { property: 'og:site_name', content: 'Ahmed Najiebe — Portfolio' },
 
@@ -45,7 +48,7 @@ export default defineNuxtConfig({
           content:
             'Full-stack engineer building production platforms for government and enterprise. Laravel, Vue, React, Python, Django.',
         },
-        { name: 'twitter:image', content: 'https://ahmednajibe.com/images/avatar.png' },
+        { name: 'twitter:image', content: 'https://ahmednajibe.com/og-image.jpg' },
 
         // Let AI crawlers know this site is meant for them
         { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },

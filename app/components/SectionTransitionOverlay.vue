@@ -106,10 +106,13 @@ watch(overlayVisible, async (visible) => {
   flex-direction: column;
   align-items: center;
   gap: 0.9rem;
+  /* Long labels ("Experience", "Polluscan") must not touch the viewport edge. */
+  padding-inline: 1.25rem;
+  text-align: center;
 }
 
 .soverlay-label {
-  font-family: var(--font-display);
+  font-family: var(--font-main);
   font-size: clamp(2.4rem, 9vw, 7rem);
   font-weight: 900;
   letter-spacing: -0.035em;

@@ -5,8 +5,10 @@
     <slot />
     <SectionTransitionOverlay />
 
-    <!-- Navigation progress indicator -->
-    <div class="fixed right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center gap-2 pointer-events-none">
+    <!-- Navigation progress indicator.
+         Hidden below lg: at narrow widths it sits on top of the content,
+         which has only 1.25rem of side padding to work with. -->
+    <div class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-2 pointer-events-none">
       <span class="text-[10px] font-mono text-text-secondary tabular-nums">
         {{ String(currentIndex + 1).padStart(2, '0') }}
       </span>
@@ -119,26 +121,63 @@ function setupWheelNav() {
     }
   }
 
+  /**
+   * Keyboard navigation.
+   *
+   * Panels are `position: fixed` scroll containers, so the document itself
+   * never scrolls and the browser's native arrow-key scrolling does nothing.
+   * That means this handler owns both jobs: scrolling *within* a section, and
+   * jumping between sections once a boundary is reached.
+   */
   function onKeyDown(e: KeyboardEvent) {
     if (isTransitioning.value) return
-    const idx = PAGE_IDS.indexOf(currentPage.value)
-    const panel = document.querySelector(`[data-panel="${currentPage.value}"]`) as HTMLElement | null
 
-    if (e.code === 'ArrowDown' || e.code === 'PageDown') {
-      // Only jump to the next panel when the active panel is already at its
-      // bottom boundary. Otherwise let the user read the section normally.
-      const atBottom = !panel || panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 60
-      if (atBottom && idx < PAGE_IDS.length - 1) {
-        e.preventDefault()
-        goToPage(PAGE_IDS[idx + 1]!)
-      }
+    // Never hijack keys while the user is typing or using a control.
+    const t = e.target as HTMLElement | null
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT|BUTTON|A)$/.test(t.tagName))) return
+    if (e.metaKey || e.ctrlKey || e.altKey) return
+
+    const panel = document.querySelector(`[data-panel="${currentPage.value}"]`) as HTMLElement | null
+    if (!panel) return
+
+    const idx      = PAGE_IDS.indexOf(currentPage.value)
+    const atTop    = panel.scrollTop <= 60
+    const atBottom = panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 60
+    const step     = 80
+    const page     = panel.clientHeight * 0.9
+
+    const scrollBy = (top: number) => {
+      e.preventDefault()
+      panel.scrollBy({ top, behavior: 'smooth' })
     }
-    if (e.code === 'ArrowUp' || e.code === 'PageUp') {
-      const atTop = !panel || panel.scrollTop <= 60
-      if (atTop && idx > 0) {
-        e.preventDefault()
-        goToPage(PAGE_IDS[idx - 1]!)
+
+    switch (e.code) {
+      case 'ArrowDown':
+      case 'PageDown': {
+        if (atBottom && idx < PAGE_IDS.length - 1) {
+          e.preventDefault()
+          goToPage(PAGE_IDS[idx + 1]!)
+        } else {
+          scrollBy(e.code === 'PageDown' ? page : step)
+        }
+        break
       }
+      case 'ArrowUp':
+      case 'PageUp': {
+        if (atTop && idx > 0) {
+          e.preventDefault()
+          goToPage(PAGE_IDS[idx - 1]!)
+        } else {
+          scrollBy(e.code === 'PageUp' ? -page : -step)
+        }
+        break
+      }
+      case 'Home':
+        scrollBy(-panel.scrollTop)
+        break
+      case 'End':
+        scrollBy(panel.scrollHeight)
+        break
     }
   }
 
