@@ -77,9 +77,22 @@ export default defineNuxtConfig({
     },
   },
 
+  // Inline critical CSS directly into the HTML to eliminate render-blocking
+  // stylesheet requests on first paint.
+  features: {
+    inlineStyles: true,
+  },
+
   vite: {
     optimizeDeps: {
       include: ['gsap', 'gsap/ScrollTrigger'],
+    },
+    build: {
+      // Disable module preloading entirely. Vite normally adds
+      // <link rel="modulepreload"> for every dynamic import, which causes
+      // all 7 panel chunks to download immediately even though only the
+      // hero is visible. Panels load on-demand when navigated to.
+      modulePreload: false,
     },
   },
 })
