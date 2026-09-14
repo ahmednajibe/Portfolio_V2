@@ -5,7 +5,7 @@ export const isTransitioning = ref(false)
 export const overlayText    = ref('')
 export const overlayVisible = ref(false)
 
-export const PAGE_IDS = ['hero', 'about', 'projects', 'experience', 'stack', 'case-study', 'contact']
+export const PAGE_IDS = ['hero', 'about', 'projects', 'case-study', 'stack', 'experience', 'contact']
 
 // Sync currentPage with URL hash for deep linking
 if (import.meta.client) {
@@ -28,15 +28,7 @@ const SECTION_NAMES: Record<string, string> = {
 }
 
 export function goToPage(id: string) {
-  // If already on the target page, make sure no stuck overlay/transition state remains.
-  if (id === currentPage.value) {
-    if (isTransitioning.value) {
-      isTransitioning.value = false
-      overlayVisible.value = false
-    }
-    return
-  }
-  if (isTransitioning.value) return
+  if (id === currentPage.value || isTransitioning.value) return
 
   const prev = document.querySelector(`[data-panel="${currentPage.value}"]`) as HTMLElement | null
   const next = document.querySelector(`[data-panel="${id}"]`)             as HTMLElement | null
@@ -49,20 +41,7 @@ export function goToPage(id: string) {
 
   next.scrollTop = 0
 
-  // Safety timeout: if the GSAP timeline somehow fails to complete (e.g.
-  // tab backgrounded, rAF paused), force-clear the transition state after
-  // 1.5s so the nav doesn't get permanently stuck.
-  const safety = setTimeout(() => {
-    isTransitioning.value = false
-    overlayVisible.value = false
-  }, 1500)
-
-  const tl = gsap.timeline({
-    onComplete: () => {
-      clearTimeout(safety)
-      isTransitioning.value = false
-    },
-  })
+  const tl = gsap.timeline({ onComplete: () => { isTransitioning.value = false } })
 
   // Wait for the overlay label to land, then swap panels.
   // Timings are tight on purpose: this runs on every navigation, so the whole

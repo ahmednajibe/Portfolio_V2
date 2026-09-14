@@ -90,7 +90,7 @@ watch(overlayVisible, async (visible) => {
 .soverlay {
   position: fixed;
   inset: 0;
-  z-index: 45;
+  z-index: 200;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,7 +99,6 @@ watch(overlayVisible, async (visible) => {
   -webkit-backdrop-filter: blur(14px) brightness(0.7);
   visibility: hidden;
   opacity: 0;
-  pointer-events: none;
 }
 
 .soverlay-content {

@@ -8,7 +8,7 @@
         :href="item.href"
         class="dock-item"
         :class="{ 'dock-active': currentPage === item.section }"
-        @click.prevent="goToPage(item.section)"
+        @click.prevent="goToPage(item.section); ($event.currentTarget as HTMLElement).blur()"
       >
         <!-- Tooltip -->
         <span class="dock-tooltip">{{ item.label }}</span>
@@ -61,9 +61,9 @@ const links = [
   { href: '#hero',       label: 'Home',       section: 'hero',       icon: IconHome },
   { href: '#about',      label: 'About',      section: 'about',      icon: IconUser },
   { href: '#projects',   label: 'Projects',   section: 'projects',   icon: IconFolder },
-  { href: '#experience', label: 'Experience', section: 'experience', icon: IconBriefcase },
-  { href: '#stack',      label: 'Stack',      section: 'stack',      icon: IconLayers },
   { href: '#case-study', label: 'Case Study', section: 'case-study', icon: IconSearch },
+  { href: '#stack',      label: 'Stack',      section: 'stack',      icon: IconLayers },
+  { href: '#experience', label: 'Experience', section: 'experience', icon: IconBriefcase },
   { href: '#contact',    label: 'Contact',    section: 'contact',    icon: IconMail },
 ]
 
@@ -118,10 +118,14 @@ onMounted(() => {
   .dock { padding: 8px 12px; }
 }
 
-.dock-item:hover {
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(255, 255, 255, 0.06);
-  transform: translateY(-3px);
+/* Hover effects only on devices that support hover.
+   On touch, :hover sticks after tap and causes the lift/glow to persist. */
+@media (hover: hover) {
+  .dock-item:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-3px);
+  }
 }
 
 .dock-active {
@@ -152,8 +156,13 @@ onMounted(() => {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
-.dock-item:hover .dock-tooltip {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
+/* Tooltip — only on devices that support hover (desktop).
+   On touch devices :hover gets "stuck" after tap, causing the tooltip
+   to persist above the dock. */
+@media (hover: hover) {
+  .dock-item:hover .dock-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 </style>
